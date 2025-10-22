@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import BootstrapProvider from "./components/BootstrapProvider";   
+import BootstrapProvider from "@/components/BootstrapProvider";   
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from "./components/shared/footer";
+import Footer from "@/components/shared/footer";
 // import Header from "./components/shared/header";
 import "../public/css/chat-tool.css";
 import "../public/css/skin-1.css";

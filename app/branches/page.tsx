@@ -1,5 +1,5 @@
-import BranchesBannerSection from "../components/branches/BranchesBannerSection";
-import BranchesSection from "../components/branches/BranchesSection";
+import BranchesBannerSection from "@/components/branches/BranchesBannerSection";
+import BranchesSection from "@/components/branches/BranchesSection";
 
 export default function BranchesPage() {
   return (
