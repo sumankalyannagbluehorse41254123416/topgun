@@ -3,7 +3,7 @@ const HomeTopSection = () => {
     <div className="section-head text-center section-aboutus home_new_css">
       <div 
         className="dez-bnr-inr overlay-black-middle" 
-        style={{ backgroundImage: 'url(https://topgunshootingacademy.com/image/shimonsharif.jpg)' }}
+        style={{ backgroundImage: 'url(/images/shimonsharif.jpg)' }}
       >
         <h2 className="h2 text-uppercase">HOME TOPGUN</h2>
         <div className="dez-separator-outer">
