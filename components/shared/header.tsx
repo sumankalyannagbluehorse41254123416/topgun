@@ -11,8 +11,10 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathname = usePathname();
   const headerRef = useRef<HTMLDivElement>(null);
   const togglerRef = useRef<HTMLButtonElement>(null);
   const navbarRef = useRef<HTMLDivElement>(null);
@@ -31,43 +33,25 @@ export default function Header() {
 
     const animateNavbar = (isOpening: boolean) => {
       if (isAnimatingRef.current || !navbarRef.current) return;
-      
+
       isAnimatingRef.current = true;
       const navbar = navbarRef.current;
-      
+
       if (isOpening) {
-        // Add show class first
         navbar.classList.add("show");
-        
-        // Opening animation - slide in from left
         navbar.style.display = "block";
         navbar.style.transform = "translateX(-100%)";
         navbar.style.opacity = "0";
         navbar.style.transition = "transform 0.3s ease, opacity 0.3s ease";
-        
-        // Force reflow
-        navbar.getBoundingClientRect();
-        
-        // Animate to original position
+        navbar.getBoundingClientRect(); // force reflow
         navbar.style.transform = "translateX(0)";
         navbar.style.opacity = "1";
-        
         setTimeout(() => {
           isAnimatingRef.current = false;
         }, 300);
       } else {
-        // Closing animation - slide out to left
-        navbar.style.transform = "translateX(0)";
-        navbar.style.opacity = "1";
-        navbar.style.transition = "transform 0.3s ease, opacity 0.3s ease";
-        
-        // Force reflow
-        navbar.getBoundingClientRect();
-        
-        // Animate to left
         navbar.style.transform = "translateX(-100%)";
         navbar.style.opacity = "0";
-        
         setTimeout(() => {
           navbar.style.display = "none";
           navbar.style.transform = "";
@@ -81,75 +65,71 @@ export default function Header() {
 
     const handleToggle = () => {
       if (isAnimatingRef.current) return;
-      
+
       const toggler = togglerRef.current;
       const navbar = navbarRef.current;
-      
       if (!toggler || !navbar) return;
 
       const isOpening = !toggler.classList.contains("open");
-      
-      // Toggle the 'open' class on the toggler button
-      if (isOpening) {
-        toggler.classList.add("open");
-      } else {
-        toggler.classList.remove("open");
-      }
-      
-      // Animate the navbar
+
+      if (isOpening) toggler.classList.add("open");
+      else toggler.classList.remove("open");
+
       animateNavbar(isOpening);
     };
 
-    // Initialize navbar state - only hide on mobile
-    const initializeNavbar = () => {
-      if (navbarRef.current && togglerRef.current) {
-        const navbar = navbarRef.current;
-        const toggler = togglerRef.current;
-        const isMobile = window.innerWidth < 992; // 992px is typical Bootstrap md breakpoint
-        
-        if (isMobile) {
-          // On mobile, start with navbar hidden and toggler not open
-          toggler.classList.remove("open");
-          navbar.classList.remove("show");
-          navbar.style.display = "none";
-          navbar.style.transform = "translateX(-100%)";
-          navbar.style.opacity = "0";
-        } else {
-          // On desktop, always show navbar and reset toggler
-          toggler.classList.remove("open");
-          navbar.style.display = "block";
-          navbar.style.transform = "translateX(0)";
-          navbar.style.opacity = "1";
-          navbar.classList.add("show");
-        }
+    // Auto close menu on link click (Mobile)
+    const handleLinkClick = () => {
+      const toggler = togglerRef.current;
+      const navbar = navbarRef.current;
+      if (!toggler || !navbar) return;
+
+      const isMobile = window.innerWidth < 992;
+      if (isMobile && toggler.classList.contains("open")) {
+        toggler.classList.remove("open");
+        animateNavbar(false);
       }
     };
 
-    // Handle resize to adjust navbar visibility
-    const handleResize = () => {
-      initializeNavbar();
+    const initializeNavbar = () => {
+      const navbar = navbarRef.current;
+      const toggler = togglerRef.current;
+      if (!navbar || !toggler) return;
+
+      if (window.innerWidth < 992) {
+        toggler.classList.remove("open");
+        navbar.classList.remove("show");
+        navbar.style.display = "none";
+        navbar.style.transform = "translateX(-100%)";
+        navbar.style.opacity = "0";
+      } else {
+        toggler.classList.remove("open");
+        navbar.style.display = "block";
+        navbar.style.transform = "translateX(0)";
+        navbar.style.opacity = "1";
+        navbar.classList.add("show");
+      }
     };
 
-    // Initial setup
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", initializeNavbar);
+
+    const toggler = togglerRef.current;
+    if (toggler) toggler.addEventListener("click", handleToggle);
+
+    // Add click event to all nav links
+    const navLinks = document.querySelectorAll(".navbar-nav a");
+    navLinks.forEach((link) => link.addEventListener("click", handleLinkClick));
+
     initializeNavbar();
 
-    // Add event listeners
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-
-    // Add click event listener to toggler
-    const toggler = togglerRef.current;
-    if (toggler) {
-      toggler.addEventListener("click", handleToggle);
-    }
-
-    // Cleanup event listeners
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-      if (toggler) {
-        toggler.removeEventListener("click", handleToggle);
-      }
+      window.removeEventListener("resize", initializeNavbar);
+      if (toggler) toggler.removeEventListener("click", handleToggle);
+      navLinks.forEach((link) =>
+        link.removeEventListener("click", handleLinkClick)
+      );
     };
   }, []);
 
@@ -161,7 +141,7 @@ export default function Header() {
           <div className="top-bar">
             <div className="container top-bar-crve">
               <div className="row justify-content-between">
-                {/* Left Side - Email & Phone */}
+                {/* Left Side */}
                 <div className="dez-topbar-left">
                   <ul className="social-line text-center pull-right">
                     <li className="email">
@@ -179,7 +159,7 @@ export default function Header() {
                   </ul>
                 </div>
 
-                {/* Right Side - Social Icons */}
+                {/* Right Side */}
                 <div className="dez-topbar-right">
                   <ul className="social-line text-center pull-right">
                     <li>
@@ -191,18 +171,12 @@ export default function Header() {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="https://twitter.com/TopGunIndia"
-                        target="_blank"
-                      >
+                      <Link href="https://twitter.com/TopGunIndia" target="_blank">
                         <FontAwesomeIcon icon={faTwitter} />
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="https://www.linkedin.com/topgun.co"
-                        target="_blank"
-                      >
+                      <Link href="https://www.linkedin.com/topgun.co" target="_blank">
                         <FontAwesomeIcon icon={faLinkedin} />
                       </Link>
                     </li>
@@ -225,7 +199,7 @@ export default function Header() {
             <div className="container clearfix">
               {/* Logo */}
               <div className="logo-header mostion">
-                <Link href="https://topgunshootingacademy.com">
+                <Link href="/">
                   <Image
                     src="/images/topgunlogo.png"
                     width={193}
@@ -235,7 +209,7 @@ export default function Header() {
                 </Link>
               </div>
 
-              {/* Mobile Nav Toggle */}
+              {/* Hamburger */}
               <button
                 className="navbar-toggler navicon justify-content-end collapsed"
                 type="button"
@@ -246,49 +220,29 @@ export default function Header() {
                 <span />
               </button>
 
-              {/* Navbar - Removed 'collapse' class */}
+              {/* Navbar */}
               <div
                 className="header-nav navbar-collapse justify-content-end"
                 id="navbarNavDropdown"
                 ref={navbarRef}
               >
-                <div className="logo-header mostion"></div>
                 <ul className="nav navbar-nav">
-                  <li className="active">
-                    <Link id="Home-top" href="/">
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link id="About-Us-top" href="/about">
-                      About Us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link id="Branches-top" href="/branches">
-                      Branches
-                    </Link>
-                  </li>
-                  <li>
-                    <Link id="Classes-top" href="/classes">
-                      Classes
-                    </Link>
-                  </li>
-                  <li>
-                    <Link id="Our-Champions-top" href="/champions">
-                      Our Champions
-                    </Link>
-                  </li>
-                  <li>
-                    <Link id="Our-Gallery-top" href="/gallery">
-                      Our Gallery
-                    </Link>
-                  </li>
-                  <li>
-                    <Link id="Contact-Us-top" href="/contact">
-                      Contact Us
-                    </Link>
-                  </li>
+                  {[
+                    { name: "Home", path: "/" },
+                    { name: "About Us", path: "/about" },
+                    { name: "Branches", path: "/branches" },
+                    { name: "Classes", path: "/classes" },
+                    { name: "Our Champions", path: "/champions" },
+                    { name: "Our Gallery", path: "/gallery" },
+                    { name: "Contact Us", path: "/contact" },
+                  ].map((item) => (
+                    <li
+                      key={item.path}
+                      className={pathname === item.path ? "active" : ""}
+                    >
+                      <Link href={item.path}>{item.name}</Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

@@ -3979,7 +3979,7 @@ blockquote:before {
 
 .header-style-6 .header-nav .nav>li.active>a,
 .header-style-6 .header-nav .nav>li:hover>a {
-    background-color: #ffc300;
+    background-color: #ffc300 !important;
     color: #fff
 }
 

@@ -4,72 +4,64 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function MediaCoverageSection({
-  coverages = [
-    {
-      title: "TopGun shooting academy is a factory for producing Champions",
-      image: "/images/1707140363302.jpg",
-      link: "",
-      source: "",
-      sourceLogo: "",
-    },
-    {
-      title: "30 medals for Topgun Shooting Academy at Delhi state meet",
-      image: "/images/1674563018301.jpg",
-      link: "https://www.google.com/amp/s/m.timesofindia.com/sports/more-sports/shooting/30-medals-for-topgun-shooting-academy-at-delhi-state-meet/amp_articleshow/88770798.cms",
-      source: "TOI",
-      sourceLogo: "/images/1674484617152.png",
-    },
-    {
-      title: "TopGun marksmen dominate Karni Singh shooting meet",
-      image: "/images/1674563103941.jpg",
-      link: "https://www.indiatoday.in/pti-feed/story/topgun-marksmen-dominate-karni-singh-shooting-meet-640038-2016-07-13",
-      source: "INDIA TODAY",
-      sourceLogo: "/images/1651215997205.jpg",
-    },
-    {
-      title: "TopGun marksmen dominate inter-school Delhi shooting meet",
-      image: "/images/1674563117877.jpg",
-      link: "https://www.business-standard.com/article/pti-stories/topgun-marksmen-dominate-inter-school-delhi-shooting-meet-115082400977_1.html",
-      source: "BS NEWS",
-      sourceLogo: "/images/1651216028123.png",
-    },
-    {
-      title: "Delhi's 65-year-old shooter sets national record",
-      image: "/images/1665466640999.jpg",
-      link: "https://timesofindia.indiatimes.com/sports/more-sports/shooting/delhis-65-year-old-shooter-sets-national-record/articleshow/56649912.cms",
-      source: "TOI",
-      sourceLogo: "/images/1674483550871.png",
-    },
-    {
-      title: "Shooters of Top Gun Academy excel in state championship",
-      image: "/images/1674563750673.jpg",
-      link: "",
-      source: "",
-      sourceLogo: "",
-    },
-    {
-      title: "Shooters of Top Gun Academy won 12 medals.",
-      image: "/images/1674563818678.jpg",
-      link: "",
-      source: "",
-      sourceLogo: "",
-    },
-    {
-      title: "Top Gun Academy is a one-stop destination to learn shooting.",
-      image: "/images/1674563838876.jpg",
-      link: "",
-      source: "",
-      sourceLogo: "",
-    },
-  ],
-}) {
+// Helper: strip unwanted HTML tags and spaces
+const stripHtml = (html?: string): string => {
+  if (!html) return "";
+  return html
+    .replace(/<[^>]+>/g, "") // remove HTML
+    .replace(/&nbsp;/g, " ") // replace &nbsp;
+    .replace(/\s+/g, " ") // collapse spaces
+    .trim();
+};
+
+interface MediaCoverageProps {
+  data?: {
+    title?: string;
+    subsections?: {
+      title?: string;
+      image?: string;
+    }[];
+  };
+}
+
+export default function MediaCoverageSection({ data }: MediaCoverageProps) {
+  const { title = "Media Coverage", subsections = [] } = data || {};
+
+  // ✅ Build dynamic items using database title + image
+  const coverages = subsections.map((sub, i) => ({
+    title: stripHtml(sub.title || `Media Coverage ${i + 1}`),
+    image: sub.image || "/images/default-banner.jpg",
+    // 👇 Static fields — can be changed manually anytime
+    link:
+      [
+        "/",
+        "https://www.google.com/amp/s/m.timesofindia.com/sports/more-sports/shooting/30-medals-for-topgun-shooting-academy-at-delhi-state-meet/amp_articleshow/88770798.cms",
+        "https://www.indiatoday.in/pti-feed/story/topgun-marksmen-dominate-karni-singh-shooting-meet-640038-2016-07-13",
+        "https://www.business-standard.com/article/pti-stories/topgun-marksmen-dominate-inter-school-delhi-shooting-meet-115082400977_1.html",
+        "https://timesofindia.indiatimes.com/sports/more-sports/shooting/delhis-65-year-old-shooter-sets-national-record/articleshow/56649912.cms",
+        "",
+        "",
+        "",
+      ][i] || "",
+    source: ["", "TOI", "INDIA TODAY", "BS NEWS", "TOI", "", "", ""][i] || "",
+    sourceLogo: [
+      "",
+      "/images/1674484617152.png",
+      "/images/1651215997205.jpg",
+      "/images/1651216028123.png",
+      "/images/1674483550871.png",
+      "",
+      "",
+      "",
+    ][i] || "",
+  }));
+
   return (
     <section className="section-full bg-white content-inner pt-0">
       <div className="container">
         {/* Section Header */}
         <div className="section-head text-center mb-10">
-          <h2 className="h2">Media Coverage</h2>
+          <h2 className="h2">{stripHtml(title)}</h2>
           <div className="dez-separator-outer">
             <div className="dez-separator bg-primary style-liner"></div>
           </div>
@@ -89,6 +81,7 @@ export default function MediaCoverageSection({
                         width={400}
                         height={250}
                         className="media-images w-full h-60 object-cover hover:scale-105 transition-transform duration-500"
+                        unoptimized
                       />
                     </Link>
                   </div>
@@ -120,6 +113,7 @@ export default function MediaCoverageSection({
                                 width={24}
                                 height={24}
                                 className="rounded-full object-contain toi"
+                                unoptimized
                               />
                             )}
                             {item.source}
