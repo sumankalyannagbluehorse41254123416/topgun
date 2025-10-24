@@ -20,9 +20,9 @@ export default function CoachingTeamSection() {
 
         {/* Section Content */}
         <div className="section-content">
-          <div className="row">
+          <div className="members_flex">
             {/* Member 1 */}
-            <div className="col-lg-4 col-sm-6 m-b30">
+            <div className="">
               <div className="dez-box">
                 <div className="dez-media">
                   <Link href="">
@@ -31,45 +31,16 @@ export default function CoachingTeamSection() {
                       alt="Rajesh Kumar"
                       width={400}
                       height={400}
-                      className="media-image w-full h-auto"
+                      className="media-image w-full "
                     />
                   </Link>
                 </div>
-                <div className="dez-info p-a20 p-t40 border-1 border-height">
+                <div className="dez-info p-a20 p-t40 border-1">
                   <h4 className="dez-title m-tb0">
                     <Link href="">Rajesh Kumar</Link>
                   </h4>
                   <div className="bg-primary skew-content-box">
-                    <ul className="dez-social-icon">
-                      <li>
-                        <Link
-                          className="fa fa-facebook"
-                          href="https://www.facebook.com/TopGunShootingAcademy"
-                          target="_blank"
-                        ></Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="fa fa-twitter"
-                          href="https://twitter.com/TopGunIndia"
-                          target="_blank"
-                        ></Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="fa fa-linkedin"
-                          href="https://www.linkedin.com/topgun.co"
-                          target="_blank"
-                        ></Link>
-                      </li>
-                      <li>
-                        <Link
-                          className="fa fa-instagram"
-                          href="https://www.instagram.com/topgunshootingacademy"
-                          target="_blank"
-                        ></Link>
-                      </li>
-                    </ul>
+                  
                   </div>
                   <p className="m-t10 m-b0">
                     Rajesh Kumar all the very best on World Haemophilia Day.
@@ -84,7 +55,7 @@ export default function CoachingTeamSection() {
             </div>
 
             {/* Member 2 */}
-            <div className="col-lg-4 col-sm-6 m-b30">
+            <div className="">
               <div className="dez-box">
                 <div className="dez-media">
                   <Link href="">
@@ -93,11 +64,11 @@ export default function CoachingTeamSection() {
                       alt="Komal Shrivas"
                       width={400}
                       height={400}
-                      className="media-image w-full h-auto"
+                      className="media-image w-full "
                     />
                   </Link>
                 </div>
-                <div className="dez-info p-a20 p-t40 border-1 border-height">
+                <div className="dez-info p-a20 p-t40 border-1">
                   <h4 className="dez-title m-tb0">
                     <Link href="">Komal Shrivas</Link>
                   </h4>
@@ -141,11 +112,9 @@ export default function CoachingTeamSection() {
                 </div>
               </div>
             </div>
-            
-
 
             {/* Member 3 */}
-            <div className="col-lg-4 col-sm-6 m-b30">
+            <div className="">
               <div className="dez-box">
                 <div className="dez-media">
                   <Link href="">
@@ -154,11 +123,11 @@ export default function CoachingTeamSection() {
                       alt="Sapna Kumari"
                       width={400}
                       height={400}
-                      className="media-image w-full h-auto"
+                      className="media-image w-full "
                     />
                   </Link>
                 </div>
-                <div className="dez-info p-a20 p-t40 border-1 border-height">
+                <div className="dez-info p-a20 p-t40 border-1">
                   <h4 className="dez-title m-tb0">
                     <Link href="">Sapna Kumari</Link>
                   </h4>
@@ -196,8 +165,8 @@ export default function CoachingTeamSection() {
                   </div>
                   <p className="m-t10 m-b0">
                     Sapna Kumari has qualified for the Indian Team Selection
-                    Trials in Youth Women&apos;s 10m Air Pistol at the 63rd National
-                    Shooting Championship in Bhopal.
+                    Trials in Youth Women&apos;s 10m Air Pistol at the 63rd
+                    National Shooting Championship in Bhopal.
                   </p>
                 </div>
               </div>
