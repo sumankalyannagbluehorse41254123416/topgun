@@ -41,7 +41,19 @@ hr {
     clear: both;
 }
 
-article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
     display: block;
 }
 
@@ -62,7 +74,15 @@ table td {
     padding: 15px 10px;
 }
 
-address,dd,dl,hr,ol,p,pre,table,ul {
+address,
+dd,
+dl,
+hr,
+ol,
+p,
+pre,
+table,
+ul {
     margin-bottom: 24px;
 }
 
@@ -92,12 +112,22 @@ address,dd,dl,hr,ol,p,pre,table,ul {
     color: #fff;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #1d1d1d;
     font-family: Oswald, sans-serif;
 }
 
-h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
     color: #1d1d1d;
 }
 
@@ -121,7 +151,7 @@ h3 {
 }
 
 h4 {
-    font-size: 15px;
+    font-size: 15px !important;
     line-height: 22px;
     margin-bottom: 15px;
     font-weight: 600
@@ -251,17 +281,21 @@ strong {
     font-weight: 900;
 }
 
-dl,ol,ul {
+dl,
+ol,
+ul {
     list-style-position:
         outside;
     padding: 0;
 }
 
-ol,ul {
+ol,
+ul {
     margin-bottom: 24px;
 }
 
-ol li,ul li {
+ol li,
+ul li {
     padding: 0;
 }
 
@@ -787,16 +821,17 @@ dl dd {
 .m-b10 {
     margin-bottom: 10px;
 }
-.m-b11{
+
+.m-b11 {
     margin-bottom: 10px;
     text-align: center;
     font-weight: 600;
     color: #ffc300;
 }
 
-.m-b12{
+.m-b12 {
     text-align: center;
-    color: #ffc300; 
+    color: #ffc300;
 }
 
 .m-b15 {
@@ -1079,7 +1114,10 @@ dl dd {
     margin-top: 100px;
 }
 
-.no-col-gap [class*=col-lg-],.no-col-gap [class*=col-md-],.no-col-gap [class*=col-sm-],.no-col-gap [class*=col-xs-] {
+.no-col-gap [class*=col-lg-],
+.no-col-gap [class*=col-md-],
+.no-col-gap [class*=col-sm-],
+.no-col-gap [class*=col-xs-] {
     padding-left: 0;
     padding-right: 0;
 }
@@ -1232,7 +1270,7 @@ dl dd {
     background-color: #f5f6f6;
 }
 
-.bg-gray-gray{
+.bg-gray-gray {
     background-color: #f5f6f6;
     height: 300px;
 }
@@ -1544,7 +1582,7 @@ dl dd {
     -o-transition: all .25s;
 }
 
-.dez-img-effect-image{
+.dez-img-effect-image {
     height: 270px !important;
 }
 
@@ -1793,7 +1831,7 @@ dl dd {
     line-height: 24px;
 }
 
-.dez-media-medal{
+.dez-media-medal {
     border: 1px solid #ffc300;
     border-top: none;
     height: auto;
@@ -1801,45 +1839,45 @@ dl dd {
 
 }
 
-.dez-media-text{
+.dez-media-text {
     height: 110px;
     padding-top: 10px;
 }
 
-.dez-media-text p{
+.dez-media-text p {
     margin-top: 10px;
 }
 
-.dez-media-text a{
+.dez-media-text a {
     color: #020202 !important;
     font-size: 16px;
     font-weight: 600;
 }
 
-.dez-media-text a:hover{
+.dez-media-text a:hover {
     color: #ffc300 !important;
 }
 
-.dez-media-text h2{
+.dez-media-text h2 {
     font-size: 18px;
     padding-top: 5px;
     color: #3b3b3a;
     font-weight: 600;
 }
 
-.dez-media-check p{
+.dez-media-check p {
     color: #070707;
     font-weight: 600;
     font-size: 15px;
 }
 
-.dez-media-check p:hover{
+.dez-media-check p:hover {
     color: #ffc300;
     font-weight: 600;
     font-size: 15px;
 }
 
-.dez-media-check a{
+.dez-media-check a {
     border: 1px solid #ffc300;
     padding: 8px 20px;
     border-radius: 4px;
@@ -1849,7 +1887,7 @@ dl dd {
     margin-left: 7px;
 }
 
-.dez-media-check a:hover{
+.dez-media-check a:hover {
     background: #ffc300;
     color: #ffffff;
 }
@@ -1859,7 +1897,7 @@ dl dd {
     position: relative;
 }
 
-.toi{
+.toi {
     width: 40px;
     height: 25px !important;
     margin-right: 10px;
@@ -6646,11 +6684,11 @@ a {
 
 @media only screen and (max-width:540px) {
     .dez-media-text {
-        height: auto; 
+        height: auto;
     }
 
     .dez-media-medal {
-        height:auto;
+        height: auto;
     }
 
 }
@@ -8769,11 +8807,15 @@ a {
     border-color: #eee
 }
 
-.dez-info.border-1,.dez-info.border-2,.dez-info.border-3,.dez-info.border-4,.dez-info.border-5 {
+.dez-info.border-1,
+.dez-info.border-2,
+.dez-info.border-3,
+.dez-info.border-4,
+.dez-info.border-5 {
     border-top: none
 }
 
-.border-height{
+.border-height {
     height: 250px;
 }
 
@@ -8796,24 +8838,26 @@ a {
     right: 0;
 }
 
-.dez-media,.dez-post-media {
+.dez-media,
+.dez-post-media {
     background-color: #fff;
     position: relative;
     border: 1px solid #ffc300;
 }
 
-.dez-media-w{
+.dez-media-w {
     background-color: #fff;
     position: relative;
     width: 97%;
 }
 
-.dez-media img,.dez-post-media img {
+.dez-media img,
+.dez-post-media img {
     width: 100%;
     height: auto;
 }
 
-.media-img{
+.media-img {
     width: 100% !important;
     height: 260px !important;
 }
@@ -8828,7 +8872,7 @@ a {
     height: 300px !important;
 }
 
-.testimonial-image{
+.testimonial-image {
     height: 100% !important;
     width: 100% !important;
 }
@@ -9319,11 +9363,11 @@ footer.footer-white.site-footer .widget_services ul li a {
 
 .section-head {
     margin-bottom: 40px;
-	
+
 }
 
-.section-aboutus{
-	margin-top: 80px;
+.section-aboutus {
+    margin-top: 80px;
 }
 
 .section-head.no-margin {
@@ -9448,11 +9492,11 @@ footer.footer-white.site-footer .widget_services ul li a {
     list-style: none
 }
 
-.dez-gallery-listing li{
+.dez-gallery-listing li {
     height: 250px;
 }
 
-.dez-gallery-listing li img{
+.dez-gallery-listing li img {
     height: 230px;
 }
 
@@ -10913,31 +10957,47 @@ ol.commentlist li .star-rating {
     -ms-animation: 100s scroll infinite linear;
     animation: 100s scroll infinite linear
 }
-.title-small, .text-white h1, .text-white h2, .text-white h3, .text-white h4, .text-white h5, .text-white h6{
-  height: 20px;
+
+.title-small,
+.text-white h1,
+.text-white h2,
+.text-white h3,
+.text-white h4,
+.text-white h5,
+.text-white h6 {
+    height: 20px;
 }
-.skew-triangle{
-background: #7f7f7f;
+
+.skew-triangle {
+    background: #7f7f7f;
 }
 
 
 
 /* 16/10/25 */
-.our-projects-galery .grid_box{ 
+.our-projects-galery .grid_box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding-bottom: 30px;
 
-display: grid;
-grid-template-columns: repeat(4,1fr);
-gap:30px;
+}
+
+@media(max-width:991px) {
+    .our-projects-galery .grid_box {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     
+
+    }
 }
 
-@media(max-width:768px){
-.our-projects-galery .grid_box{ 
+
+@media(max-width:425px) {
+    .our-projects-galery .grid_box {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 25px;
 
 
-grid-template-columns: repeat(2,1fr);
-gap:15px;
-    
+    }
 }
-}
-
