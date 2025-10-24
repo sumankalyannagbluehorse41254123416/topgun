@@ -10,11 +10,54 @@ import {
   faLinkedin,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { useEffect, useRef } from "react";
 
 export default function Header() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const togglerRef = useRef<HTMLButtonElement>(null);
+  const navbarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (headerRef.current) {
+        if (window.scrollY > 0) {
+          headerRef.current.classList.add("is-fixed");
+        } else {
+          headerRef.current.classList.remove("is-fixed");
+        }
+      }
+    };
+
+    const handleToggle = () => {
+      if (togglerRef.current) {
+        togglerRef.current.classList.toggle("open");
+      }
+      if (navbarRef.current) {
+        navbarRef.current.classList.toggle("open");
+      }
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Add click event listener to toggler
+    const toggler = togglerRef.current;
+    if (toggler) {
+      toggler.addEventListener("click", handleToggle);
+    }
+
+    // Cleanup event listeners
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (toggler) {
+        toggler.removeEventListener("click", handleToggle);
+      }
+    };
+  }, []);
+
   return (
     <header className="site-header header-style-6 dark mo-left">
-      <div className="sticky-header main-bar-wraper navbar-expand-lg">
+      <div className="sticky-header main-bar-wraper navbar-expand-lg" ref={headerRef}>
         <div className="main-bar clearfix">
           {/* === Top Bar === */}
           <div className="top-bar">
@@ -96,13 +139,14 @@ export default function Header() {
 
               {/* Mobile Nav Toggle */}
               <button
-                className="navbar-toggler collapsed navicon justify-content-end"
+                className="navbar-toggler navicon justify-content-end collapsed"
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
+                ref={togglerRef}
               >
                 <span />
                 <span />
@@ -111,9 +155,11 @@ export default function Header() {
 
               {/* Navbar */}
               <div
-                className="header-nav navbar-collapse collapse justify-content-end"
+                className="header-nav navbar-collapse justify-content-end collapse"
                 id="navbarNavDropdown"
+                ref={navbarRef}
               >
+                <div className="logo-header mostion"></div>
                 <ul className="nav navbar-nav">
                   <li className="active">
                     <Link id="Home-top" href="/">
