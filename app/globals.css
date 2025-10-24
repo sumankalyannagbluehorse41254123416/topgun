@@ -1,9 +1,9 @@
 
-/* In your CSS file */
-@media (max-width: 991px) {
-  .header-nav {
-    display: none !important;
-    transform: translateX(-100%) !important;
-    opacity: 0 !important;
-  }
-}
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+} */
+

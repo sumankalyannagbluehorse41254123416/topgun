@@ -82,35 +82,41 @@ export default function Header() {
     const handleToggle = () => {
       if (isAnimatingRef.current) return;
       
-      if (togglerRef.current) {
-        togglerRef.current.classList.toggle("open");
+      const toggler = togglerRef.current;
+      const navbar = navbarRef.current;
+      
+      if (!toggler || !navbar) return;
+
+      const isOpening = !toggler.classList.contains("open");
+      
+      // Toggle the 'open' class on the toggler button
+      if (isOpening) {
+        toggler.classList.add("open");
+      } else {
+        toggler.classList.remove("open");
       }
       
-      if (navbarRef.current) {
-        const isOpening = !navbarRef.current.classList.contains("show");
-        animateNavbar(isOpening);
-      }
+      // Animate the navbar
+      animateNavbar(isOpening);
     };
 
     // Initialize navbar state - only hide on mobile
     const initializeNavbar = () => {
-      if (navbarRef.current) {
+      if (navbarRef.current && togglerRef.current) {
         const navbar = navbarRef.current;
+        const toggler = togglerRef.current;
         const isMobile = window.innerWidth < 992; // 992px is typical Bootstrap md breakpoint
         
         if (isMobile) {
-          // On mobile, start hidden
-          if (navbar.classList.contains("show")) {
-            navbar.style.display = "block";
-            navbar.style.transform = "translateX(0)";
-            navbar.style.opacity = "1";
-          } else {
-            navbar.style.display = "none";
-            navbar.style.transform = "translateX(-100%)";
-            navbar.style.opacity = "0";
-          }
+          // On mobile, start with navbar hidden and toggler not open
+          toggler.classList.remove("open");
+          navbar.classList.remove("show");
+          navbar.style.display = "none";
+          navbar.style.transform = "translateX(-100%)";
+          navbar.style.opacity = "0";
         } else {
-          // On desktop, always show
+          // On desktop, always show navbar and reset toggler
+          toggler.classList.remove("open");
           navbar.style.display = "block";
           navbar.style.transform = "translateX(0)";
           navbar.style.opacity = "1";
