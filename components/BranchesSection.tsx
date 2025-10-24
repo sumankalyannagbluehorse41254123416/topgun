@@ -5,19 +5,19 @@ import Image from "next/image";
 export default function BranchesSection() {
   const branches = [
     {
-      img: "https://wip.tezcommerce.com:3304/admin/module/53/1709637837137.jpeg",
+      img: "/images/1709637837137.jpeg",
       title: "TOPGUN SHOOTING ACADEMY - KALKAJI",
     },
     {
-      img: "https://wip.tezcommerce.com:3304/admin/module/53/1709637887729.jpeg",
+      img: "/images/1709637887729.jpeg",
       title: "TOPGUN SHOOTING ACADEMY - GURGAON",
     },
     {
-      img: "https://wip.tezcommerce.com:3304/admin/module/53/1709639290848.jpg",
+      img: "/images/1709639290848.jpg",
       title: "TOPGUN SHOOTING ACADEMY - RAIPUR",
     },
     {
-      img: "https://wip.tezcommerce.com:3304/admin/module/53/1709639351618.jpg",
+      img: "/images/1709639351618.jpg",
       title: "TOPGUN SHOOTING ACADEMY - JAIPUR",
     },
   ];

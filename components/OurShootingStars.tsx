@@ -7,22 +7,22 @@ export default function OurShootingStars() {
     {
       name: "Shaurya Sarin",
       role: "Student",
-      img: "https://wip.tezcommerce.com:3304/admin/module/53/1656314962492.jpg",
+      img: "/images/1656314962492.jpg",
     },
     {
       name: "Paarth Makhija",
       role: "Student",
-      img: "https://wip.tezcommerce.com:3304/admin/module/53/1656315003895.jpg",
+      img: "/images/1656315003895.jpg",
     },
     {
       name: "Shreya Saksena",
       role: "Student",
-      img: "https://wip.tezcommerce.com:3304/admin/module/53/1656315049408.jpg",
+      img: "/images/1656315049408.jpg",
     },
     {
       name: "Visnu Shivaraj Pandian",
       role: "Student",
-      img: "https://wip.tezcommerce.com:3304/admin/module/53/1649838134903.jpg",
+      img: "/images/1649838134903.jpg",
     },
   ];
 
