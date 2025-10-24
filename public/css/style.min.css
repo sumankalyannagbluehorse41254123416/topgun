@@ -138,7 +138,7 @@ h1 {
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 24px !important;
     line-height: 38px;
     font-weight: 700;
 }
@@ -1852,6 +1852,7 @@ dl dd {
     color: #020202 !important;
     font-size: 16px;
     font-weight: 600;
+    text-decoration: none !important;
 }
 
 .dez-media-text a:hover {
@@ -10960,7 +10961,7 @@ ol.commentlist li .star-rating {
 
 .title-small,
 .text-white h1,
-.text-white h2,
+/* .text-white h2, */
 .text-white h3,
 .text-white h4,
 .text-white h5,
