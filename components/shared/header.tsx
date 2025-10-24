@@ -16,6 +16,7 @@ export default function Header() {
   const headerRef = useRef<HTMLDivElement>(null);
   const togglerRef = useRef<HTMLButtonElement>(null);
   const navbarRef = useRef<HTMLDivElement>(null);
+  const isAnimatingRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,14 +29,82 @@ export default function Header() {
       }
     };
 
+    const animateNavbar = (isOpening: boolean) => {
+      if (isAnimatingRef.current || !navbarRef.current) return;
+      
+      isAnimatingRef.current = true;
+      const navbar = navbarRef.current;
+      
+      if (isOpening) {
+        // Add show class first
+        navbar.classList.add("show");
+        
+        // Opening animation - slide in from left
+        navbar.style.display = "block";
+        navbar.style.transform = "translateX(-100%)";
+        navbar.style.opacity = "0";
+        navbar.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+        
+        // Force reflow
+        navbar.getBoundingClientRect();
+        
+        // Animate to original position
+        navbar.style.transform = "translateX(0)";
+        navbar.style.opacity = "1";
+        
+        setTimeout(() => {
+          isAnimatingRef.current = false;
+        }, 300);
+      } else {
+        // Closing animation - slide out to left
+        navbar.style.transform = "translateX(0)";
+        navbar.style.opacity = "1";
+        navbar.style.transition = "transform 0.3s ease, opacity 0.3s ease";
+        
+        // Force reflow
+        navbar.getBoundingClientRect();
+        
+        // Animate to left
+        navbar.style.transform = "translateX(-100%)";
+        navbar.style.opacity = "0";
+        
+        setTimeout(() => {
+          navbar.style.display = "none";
+          navbar.style.transform = "";
+          navbar.style.opacity = "";
+          navbar.style.transition = "";
+          navbar.classList.remove("show");
+          isAnimatingRef.current = false;
+        }, 300);
+      }
+    };
+
     const handleToggle = () => {
+      if (isAnimatingRef.current) return;
+      
       if (togglerRef.current) {
         togglerRef.current.classList.toggle("open");
       }
+      
       if (navbarRef.current) {
-        navbarRef.current.classList.toggle("open");
+        const isOpening = !navbarRef.current.classList.contains("show");
+        animateNavbar(isOpening);
       }
     };
+
+    // Initialize navbar state
+    if (navbarRef.current) {
+      const navbar = navbarRef.current;
+      if (navbar.classList.contains("show")) {
+        navbar.style.display = "block";
+        navbar.style.transform = "translateX(0)";
+        navbar.style.opacity = "1";
+      } else {
+        navbar.style.display = "none";
+        navbar.style.transform = "translateX(-100%)";
+        navbar.style.opacity = "0";
+      }
+    }
 
     // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
@@ -141,11 +210,6 @@ export default function Header() {
               <button
                 className="navbar-toggler navicon justify-content-end collapsed"
                 type="button"
-                data-toggle="collapse"
-                data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
                 ref={togglerRef}
               >
                 <span />
@@ -158,6 +222,11 @@ export default function Header() {
                 className="header-nav navbar-collapse justify-content-end collapse"
                 id="navbarNavDropdown"
                 ref={navbarRef}
+                style={{
+                  display: "none",
+                  transform: "translateX(-100%)",
+                  opacity: "0"
+                }}
               >
                 <div className="logo-header mostion"></div>
                 <ul className="nav navbar-nav">
