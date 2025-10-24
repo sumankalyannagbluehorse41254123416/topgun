@@ -9367,7 +9367,7 @@ footer.footer-white.site-footer .widget_services ul li a {
 }
 
 .section-aboutus {
-    margin-top: 80px;
+    margin-top: 72px;
 }
 
 .section-head.no-margin {
@@ -9989,7 +9989,11 @@ ol.commentlist li .star-rating {
         text-align: center;
         padding-top: 5px;
         padding-bottom: 5px;
-        width: 100%
+        width: 100%;
+    }
+
+    .section-aboutus {
+        margin-top: 18px;
     }
 }
 
@@ -10987,7 +10991,7 @@ ol.commentlist li .star-rating {
     .our-projects-galery .grid_box {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
-    
+
 
     }
 }
