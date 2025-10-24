@@ -196,7 +196,7 @@ export default function CoachingTeamSection() {
                   </div>
                   <p className="m-t10 m-b0">
                     Sapna Kumari has qualified for the Indian Team Selection
-                    Trials in Youth Women's 10m Air Pistol at the 63rd National
+                    Trials in Youth Women&apos;s 10m Air Pistol at the 63rd National
                     Shooting Championship in Bhopal.
                   </p>
                 </div>

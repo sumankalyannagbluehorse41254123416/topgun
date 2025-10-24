@@ -3,8 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faFacebook, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Header() {
   return (
@@ -19,15 +24,15 @@ export default function Header() {
                 <div className="dez-topbar-left">
                   <ul className="social-line text-center pull-right">
                     <li className="email">
-                      <a href="javascript:void(0);">
-                        <FontAwesomeIcon icon={faEnvelope} />
-                        <span> shimonsharif@gmail.com </span>
+                      <a href="mailto:shimonsharif@gmail.com">
+                        <FontAwesomeIcon icon={faEnvelope} />{" "}
+                        <span>shimonsharif@gmail.com</span>
                       </a>
                     </li>
                     <li>
-                      <a href="javascript:void(0);">
-                        <i className="fa fa-phone"></i>
-                        <span> 011 4108 8098 </span>
+                      <a href="tel:01141088098">
+                        <FontAwesomeIcon icon={faPhone} />{" "}
+                        <span>011 4108 8098</span>
                       </a>
                     </li>
                   </ul>
@@ -40,38 +45,34 @@ export default function Header() {
                       <Link
                         href="https://www.facebook.com/TopGunShootingAcademy"
                         target="_blank"
-                  
-                      />
-                     <FontAwesomeIcon icon={faFacebook}/>
+                      >
+                        <FontAwesomeIcon icon={faFacebook} />
+                      </Link>
                     </li>
                     <li>
                       <Link
                         href="https://twitter.com/TopGunIndia"
                         target="_blank"
-                        className="fa fa-twitter"
-                      />
-                            <FontAwesomeIcon icon={faTwitter}/>
+                      >
+                        <FontAwesomeIcon icon={faTwitter} />
+                      </Link>
                     </li>
-                
                     <li>
                       <Link
                         href="https://www.linkedin.com/topgun.co"
                         target="_blank"
-                      
-                      />
-             <FontAwesomeIcon icon={faLinkedin}/>
-                    
+                      >
+                        <FontAwesomeIcon icon={faLinkedin} />
+                      </Link>
                     </li>
                     <li>
                       <Link
                         href="https://www.instagram.com/topgunshootingacademy"
                         target="_blank"
-                      
-                      />
-                                              <FontAwesomeIcon icon={faInstagram}/>
-               
+                      >
+                        <FontAwesomeIcon icon={faInstagram} />
+                      </Link>
                     </li>
-                    {/* <li><a className="loginmodal" id="loginmodal">Login</a></li> */}
                   </ul>
                 </div>
               </div>
@@ -85,11 +86,10 @@ export default function Header() {
               <div className="logo-header mostion">
                 <Link href="https://topgunshootingacademy.com">
                   <Image
-                    src="https://topgunshootingacademy.com/image/topgunlogo.png"
+                    src="/images/topgunlogo.png"
                     width={193}
                     height={89}
                     alt="logo"
-                    priority
                   />
                 </Link>
               </div>
@@ -104,16 +104,54 @@ export default function Header() {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span></span>
-                <span></span>
-                <span></span>
+                <span />
+                <span />
+                <span />
               </button>
 
-              {/* Navbar Placeholder */}
+              {/* Navbar */}
               <div
                 className="header-nav navbar-collapse collapse justify-content-end"
                 id="navbarNavDropdown"
-              ></div>
+              >
+                <ul className="nav navbar-nav">
+                  <li className="active">
+                    <Link id="Home-top" href="/">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link id="About-Us-top" href="/about">
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link id="Branches-top" href="/branches">
+                      Branches
+                    </Link>
+                  </li>
+                  <li>
+                    <Link id="Classes-top" href="/classes">
+                      Classes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link id="Our-Champions-top" href="/champions">
+                      Our Champions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link id="Our-Gallery-top" href="/gallery">
+                      Our Gallery
+                    </Link>
+                  </li>
+                  <li>
+                    <Link id="Contact-Us-top" href="/contact">
+                      Contact Us
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

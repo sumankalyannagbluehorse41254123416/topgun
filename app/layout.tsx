@@ -5,7 +5,7 @@ import "./globals.css";
 import BootstrapProvider from "@/components/BootstrapProvider";   
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "@/components/shared/footer";
-// import Header from "./components/shared/header";
+import Header from "@/components/shared/header";
 import "../public/css/chat-tool.css";
 import "../public/css/skin-1.css";
 import "../public/css/slick-theme.css";
@@ -45,7 +45,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <BootstrapProvider>
-          {/* <Header /> */}
+          <Header />
           {children}
           <Footer />
         </BootstrapProvider>

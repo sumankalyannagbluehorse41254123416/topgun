@@ -9,13 +9,15 @@ import MediaCoverageSection from "@/components/MediaCoverageSection";
 export default function Home() {
   return (
     <>
-    <HomeTopSection/>
-    <AboutSection/>
-    <OurProjectsGallery/>
-    <BranchesSection/>
-    <GallerySection/>   
-    <OurShootingStars/>
-    <MediaCoverageSection/>
+      <div className="page-content">
+        <HomeTopSection />
+        <AboutSection />
+        <OurProjectsGallery />
+        <BranchesSection />
+        <GallerySection />
+        <OurShootingStars />
+        <MediaCoverageSection />
+      </div>
     </>
   );
 }
