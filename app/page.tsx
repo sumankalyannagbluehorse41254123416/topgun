@@ -44,6 +44,7 @@ export default async function Home() {
   } catch (error) {
     console.error("Fetch error:", error);
   }
+  console.log(siteData);
 
   const sections =
     siteData.pageItemdataWithSubsection ||
@@ -68,15 +69,52 @@ export default async function Home() {
     subsections: aboutSection.subsections || [],
   };
 
+   // ✅ Section 2: Our Projects Gallery
+  const projectsSection = sections[2] || {};
+  const projectsData = {
+    image: projectsSection.image || "/images/top.jpg",
+    subsections: projectsSection.subsections || [],
+  };
+
+  // ✅ Section 3: Branches Section
+const branchesSection = sections[3] || {};
+const branchesData = {
+  title: stripHtml(branchesSection.title || "Branches"),
+  image: branchesSection.image || "/images/topgunlogo.png", // section main image (logo)
+  subsections: branchesSection.subsections || [], // list of branches
+};
+
+// ✅ Section 4: Gallery Section
+const gallerySection = sections[4] || {};
+const galleryData = {
+  title: stripHtml(gallerySection.title || "Gallery"),
+  image: gallerySection.image || "/images/topgun.jpg", // background image
+  subsections: gallerySection.subsections || [], // each has an image
+};
+
+// ✅ Section 5: Our Shooting Stars
+const starsSection = sections[5] || {};
+const starsData = {
+  title: stripHtml(starsSection.title || "Our Shooting Stars"),
+  subsections: starsSection.subsections || [], // each has title, description, image
+};
+
+// ✅ Section 6: Media Coverage Section
+const mediaCoverageSection = sections[6] || {};
+const mediaCoverageData = {
+  title: stripHtml(mediaCoverageSection.title || "Media Coverage"),
+  subsections: mediaCoverageSection.subsections || [], // title & image come from these
+};
+
   return (
     <div className="page-content">
       <HomeTopSection data={homeTopData} />
       <AboutSection data={aboutSectionData} />
-      <OurProjectsGallery />
-      <BranchesSection />
-      <GallerySection />
-      <OurShootingStars />
-      <MediaCoverageSection />
+      <OurProjectsGallery data={projectsData} />
+      <BranchesSection data={branchesData} />
+      <GallerySection data={galleryData} />
+      <OurShootingStars data={starsData} />
+      <MediaCoverageSection data={mediaCoverageData} />
     </div>
   );
 }

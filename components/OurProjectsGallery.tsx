@@ -1,62 +1,92 @@
 "use client";
 
-export default function OurProjectsGallery() {
-  const projects = [
-    {
-      title: "Sport Training",
-      description:
-        "Professional coaching in a systematic way to help you reach your potential in the sport.",
-      // image: "https://wip.tezcommerce.com:3304/admin/module/53/1649412071508.png",
-    },
-    {
-      title: "Personal Training",
-      description:
-        "Professional coaching conducted personally by International shooters and highly experienced coaches.",
-      // image: "https://wip.tezcommerce.com:3304/admin/module/53/1649412108117.png",
-    },
-    {
-      title: "Pay & Play",
-      description: "Shooting session for recreational purpose.",
-      // image: "https://wip.tezcommerce.com:3304/admin/module/53/1652272622120.png",
-    },
-    {
-      title: "Training Certification",
-      description: "Short certification course for gun safety and handling.",
-      // image: "https://wip.tezcommerce.com:3304/admin/module/53/1649412181769.png",
-    },
-  ];
+import Image from "next/image";
+
+// Utility to safely remove HTML tags
+// Helper: remove HTML tags and decode HTML entities
+const stripHtml = (html: string) => {
+  if (!html) return "";
+  // Remove all HTML tags
+  let text = html.replace(/<[^>]*>/g, "");
+  // Decode HTML entities
+  text = text
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+  return text.trim();
+};
+
+
+interface SubSection {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+interface OurProjectsGalleryProps {
+  data?: {
+    image?: string;
+    title?: string;
+    subsections?: SubSection[];
+  };
+}
+
+const OurProjectsGallery: React.FC<OurProjectsGalleryProps> = ({ data }) => {
+  const {
+    image = "/images/top.jpg", // default background
+    subsections = [],
+  } = data || {};
 
   return (
     <div
       className="section-full bg-img-fix content-inner overlay-black-middle our-projects-galery"
       style={{
-        backgroundImage: "url('/images/top.jpg')",
+        backgroundImage: `url(${image})`,
         backgroundPosition: "center",
       }}
     >
       <div className="container">
         <div className="grid_box">
-          {projects.map((item, index) => (
-            <div
-              key={index}
-              className="border-1 p-a15 text-center text-white skew-triangle left-top hvr-wobble-horizontal"
-            >
-              <div className="sports-icon">
-                {/* Uncomment for dynamic icons/images */}
-                {/* <Image src={item.image} alt={item.title} width={85} height={85} /> */}
+          {subsections.length > 0 ? (
+            subsections.map((item, index) => (
+              <div
+                key={index}
+                className="border-1 p-a15 text-center text-white skew-triangle left-top hvr-wobble-horizontal"
+              >
+                <div className="sports-icon">
+                  {item.image && (
+                    <Image
+                      src={item.image}
+                      alt={stripHtml(item.title || "")}
+                      width={85}
+                      height={85}
+                    />
+                  )}
+                </div>
+
+                <h4 className="text-capitalize">
+                  {stripHtml(item.title || "Untitled")}
+                </h4>
+
+                <div className="dez-separator-outer">
+                  <div className="dez-separator bg-primary style-liner"></div>
+                </div>
+
+                {item.description && (
+                  <p className="m-b0">{stripHtml(item.description)}</p>
+                )}
               </div>
-
-              <h4 className="text-capitalize">{item.title}</h4>
-
-              <div className="dez-separator-outer">
-                <div className="dez-separator bg-primary style-liner"></div>
-              </div>
-
-              {item.description && <p className="m-b0">{item.description}</p>}
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="text-white text-center">No project data available.</p>
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default OurProjectsGallery;
