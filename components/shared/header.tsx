@@ -92,22 +92,44 @@ export default function Header() {
       }
     };
 
-    // Initialize navbar state
-    if (navbarRef.current) {
-      const navbar = navbarRef.current;
-      if (navbar.classList.contains("show")) {
-        navbar.style.display = "block";
-        navbar.style.transform = "translateX(0)";
-        navbar.style.opacity = "1";
-      } else {
-        navbar.style.display = "none";
-        navbar.style.transform = "translateX(-100%)";
-        navbar.style.opacity = "0";
+    // Initialize navbar state - only hide on mobile
+    const initializeNavbar = () => {
+      if (navbarRef.current) {
+        const navbar = navbarRef.current;
+        const isMobile = window.innerWidth < 992; // 992px is typical Bootstrap md breakpoint
+        
+        if (isMobile) {
+          // On mobile, start hidden
+          if (navbar.classList.contains("show")) {
+            navbar.style.display = "block";
+            navbar.style.transform = "translateX(0)";
+            navbar.style.opacity = "1";
+          } else {
+            navbar.style.display = "none";
+            navbar.style.transform = "translateX(-100%)";
+            navbar.style.opacity = "0";
+          }
+        } else {
+          // On desktop, always show
+          navbar.style.display = "block";
+          navbar.style.transform = "translateX(0)";
+          navbar.style.opacity = "1";
+          navbar.classList.add("show");
+        }
       }
-    }
+    };
 
-    // Add scroll event listener
+    // Handle resize to adjust navbar visibility
+    const handleResize = () => {
+      initializeNavbar();
+    };
+
+    // Initial setup
+    initializeNavbar();
+
+    // Add event listeners
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     // Add click event listener to toggler
     const toggler = togglerRef.current;
@@ -118,6 +140,7 @@ export default function Header() {
     // Cleanup event listeners
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
       if (toggler) {
         toggler.removeEventListener("click", handleToggle);
       }
@@ -217,16 +240,11 @@ export default function Header() {
                 <span />
               </button>
 
-              {/* Navbar */}
+              {/* Navbar - Removed 'collapse' class */}
               <div
-                className="header-nav navbar-collapse justify-content-end collapse"
+                className="header-nav navbar-collapse justify-content-end"
                 id="navbarNavDropdown"
                 ref={navbarRef}
-                style={{
-                  display: "none",
-                  transform: "translateX(-100%)",
-                  opacity: "0"
-                }}
               >
                 <div className="logo-header mostion"></div>
                 <ul className="nav navbar-nav">
