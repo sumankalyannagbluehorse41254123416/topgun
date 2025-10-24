@@ -2311,8 +2311,8 @@ p {
 
 .navbar-toggler {
     margin: 16px 0 16px 5px;
-    padding: 17px 17px;
-    border: 2px solid #ffc300;
+    padding: 17px 17px !important;
+    border: 2px solid #ffc300 !important;
     border-radius: 0;
     outline: 0
 }
@@ -2461,7 +2461,8 @@ p {
         top: 0;
         background-color: #fff;
         margin: 0;
-        z-index: 99
+        z-index: 99;
+       
     }
 
     .mo-left .header-nav li.open a {
@@ -2476,9 +2477,11 @@ p {
         -o-transition: all .8s;
         margin: 0;
         width: 260px;
-            display: block !important;
-    transform: translateX(0px) !important;
-    opacity: 1 !important;
+        display: block ;
+        transform: translateX(0px) ;
+        opacity: 1 ;
+
+        transition: transform 0.3s, opacity 0.3s;
     }
 
     .mo-left .navbar-toggler.open:after {
@@ -2719,7 +2722,9 @@ p {
     }
 
     .mo-left .header-nav {
-        overflow: scroll
+        overflow: scroll;
+      
+          transition: transform 0.3s, opacity 0.3s;
     }
 
     .navbar-nav {

@@ -48,6 +48,7 @@
 .our-achievements .dez-info-has:hover,
 .blog-details .dez-info-has.skew-triangle {
     background-color: #ffc300;
+    text-decoration: none;
 }
 
 .skew-triangle:after,

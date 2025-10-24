@@ -7,12 +7,3 @@ body {
   font-style: normal;
 } */
 
-
-/* In your CSS file */
-@media (max-width: 991px) {
-  .header-nav {
-    display: none !important;
-    transform: translateX(-100%) !important;
-    opacity: 0 !important;
-  }
-}
