@@ -10997,12 +10997,31 @@ ol.commentlist li .star-rating {
     }
 }
 
-
 @media(max-width:425px) {
     .our-projects-galery .grid_box {
         grid-template-columns: repeat(1, 1fr);
         gap: 25px;
 
 
+    }
+}
+
+
+.members_flex{
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(3,1fr);
+}
+
+@media(max-width:991px) {
+    .members_flex {
+        grid-template-columns: repeat(2,1fr);
+        gap: 20px;
+    }
+}
+@media(max-width:575px) {
+    .members_flex {
+        grid-template-columns: repeat(1,1fr);
+        gap: 20px;
     }
 }
