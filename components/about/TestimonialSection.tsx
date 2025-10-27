@@ -6,43 +6,37 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 
-export default function TestimonialSection() {
-  const testimonials = [
-    {
-      text: "very nice and professional training body for gun shooting in ahmedabad. Provides great opportunities for students and helps in physical and mental development of a person",
-      name: "Lasya Andalam",
-      position: "Student",
-      image:
-        "https://wip.tezcommerce.com:3304/admin/module/53/1649917828542.jpg",
-    },
-    {
-      text: "A very good and amazing experience.the shooting range is well equipped and a peaceful environment for shooting.The most important  a very careful, supportive coach and very hardworking personality..",
-      name: "Pratyush Aman Barnik",
-      position: "Student",
-      image:
-        "https://wip.tezcommerce.com:3304/admin/module/53/1649835830705.jpg",
-    },
-    {
-      text: "A very good and amazing experience.the shooting range is well equipped and a peaceful environment for shooting.The most important  a very careful, supportive coach and very hardworking personality..",
-      name: "Pratyush Aman Barnik",
-      position: "Student",
-      image:
-        "https://wip.tezcommerce.com:3304/admin/module/53/1649835830705.jpg",
-    }
-  ];
+// Helper function to remove HTML tags safely
+const stripHtml = (html: string) => (html ? html.replace(/<[^>]*>/g, "") : "");
+
+interface Subsection {
+  title?: string; // 👤 Name
+  description?: string; // 💬 Testimonial text
+  image?: string; // 🖼️ Image
+}
+
+interface Section {
+  title?: string; // TESTIMONIAL
+  shortDescription?: string; // Short paragraph
+  subsections?: Subsection[];
+}
+
+export default function TestimonialSection({ data }: { data?: Section }) {
+  const title = data?.title || "TESTIMONIAL";
+  const shortDescription = stripHtml(data?.shortDescription || "");
+  const testimonials = data?.subsections || [];
 
   return (
     <div className="section-full bg-img-fix content-inner overlay-black-dark">
       <div className="container">
+        {/* Section Header */}
         <div className="section-head text-center text-white">
-          <h3 className="h3">TESTIMONIAL</h3>
+          <h3 className="h3">{title}</h3>
           <div className="dez-separator bg-primary"></div>
-          <p>
-            Our academy is a factory for producing Champions. Every year new
-            people join us and we help them reach their potential.
-          </p>
+          <p>{shortDescription}</p>
         </div>
 
+        {/* Section Content */}
         <div className="section-content">
           <Swiper
             modules={[Autoplay, Pagination]}
@@ -50,10 +44,10 @@ export default function TestimonialSection() {
             spaceBetween={30}
             loop
             autoplay={{
-              delay: 4000, // Pause duration between slides (4 seconds)
-              disableOnInteraction: false, // Ensures autoplay continues after user interaction
+              delay: 4000,
+              disableOnInteraction: false,
             }}
-            speed={3000} // Smooth transition duration (1 second)
+            speed={3000}
             breakpoints={{
               1024: { slidesPerView: 2 },
               991: { slidesPerView: 1 },
@@ -64,18 +58,21 @@ export default function TestimonialSection() {
               <SwiperSlide key={i}>
                 <div className="testimonial-6">
                   <div className="testimonial-text bg-white quote-left quote-right">
-                    <p>{t.text}</p>
+                    <p>{stripHtml(t.description || "")}</p>
                   </div>
                   <div className="testimonial-detail clearfix bg-primary text-white">
-                    <h4 className="testimonial-name m-tb0">{t.name}</h4>
-                    <span className="testimonial-position">{t.position}</span>
+                    <h4 className="testimonial-name m-tb0">
+                      {stripHtml(t.title || "Anonymous")}
+                    </h4>
+                    {/* ✅ You said position will remain same or sometimes change */}
+                    <span className="testimonial-position">Student</span>
                     <div className="testimonial-pic radius">
                       <Image
-                        src={t.image}
-                        alt={t.text}
+                        src={t.image || "/images/default-user.jpg"}
+                        alt={t.title || ""}
                         width={100}
                         height={100}
-                        className="rounded-full"
+                        className="rounded-full object-cover"
                       />
                     </div>
                   </div>
