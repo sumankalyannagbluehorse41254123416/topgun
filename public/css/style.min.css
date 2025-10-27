@@ -11006,7 +11006,6 @@ ol.commentlist li .star-rating {
     }
 }
 
-
 .members_flex{
     display: grid;
     gap: 30px;
@@ -11025,3 +11024,8 @@ ol.commentlist li .star-rating {
         gap: 20px;
     }
 }
+
+  .members_flex  .box-border{ 
+     border: 1px solid #eee;
+   }
+
