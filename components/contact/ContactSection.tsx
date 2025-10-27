@@ -1,6 +1,19 @@
 "use client";
 
 import { FormEvent } from "react";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faMapMarkerAlt,
+  faEnvelope,
+  faMobileAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function ContactUsPage() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -38,7 +51,7 @@ export default function ContactUsPage() {
                         className="form-control"
                         placeholder="Your Name"
                         required
-                        pattern="^[a-zA-Z\s]{1,100}$"
+                        pattern="^[a-zA-Z\\s]{1,100}$"
                       />
                     </div>
                   </div>
@@ -53,7 +66,7 @@ export default function ContactUsPage() {
                         className="form-control"
                         required
                         placeholder="Your Email Id"
-                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                        pattern="^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
                       />
                     </div>
                   </div>
@@ -83,7 +96,7 @@ export default function ContactUsPage() {
                         required
                         className="form-control"
                         placeholder="Subject"
-                        pattern="^[a-zA-Z\s]{1,100}$"
+                        pattern="^[a-zA-Z\\s]{1,100}$"
                       />
                     </div>
                   </div>
@@ -131,9 +144,9 @@ export default function ContactUsPage() {
             <ul className="no-margin">
               <li className="icon-bx-wraper left m-b30">
                 <div className="icon-bx-xs bg-primary">
-                  <a href="#" className="icon-cell">
-                    <i className="fa fa-map-marker"></i>
-                  </a>
+                  <Link href="#" className="icon-cell">
+                    <FontAwesomeIcon icon={faMapMarkerAlt} />
+                  </Link>
                 </div>
                 <div className="icon-content">
                   <h6 className="text-uppercase m-tb0 dlab-tilte">ADDRESS:</h6>
@@ -144,9 +157,9 @@ export default function ContactUsPage() {
               </li>
               <li className="icon-bx-wraper left m-b30">
                 <div className="icon-bx-xs bg-primary">
-                  <a href="#" className="icon-cell">
-                    <i className="fa fa-envelope"></i>
-                  </a>
+                  <Link href="#" className="icon-cell">
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </Link>
                 </div>
                 <div className="icon-content">
                   <h6 className="text-uppercase m-tb0 dlab-tilte">EMAIL:</h6>
@@ -155,9 +168,9 @@ export default function ContactUsPage() {
               </li>
               <li className="icon-bx-wraper left m-b30">
                 <div className="icon-bx-xs bg-primary">
-                  <a href="#" className="icon-cell">
-                    <i className="fa fa-mobile-phone"></i>
-                  </a>
+                  <Link href="#" className="icon-cell">
+                    <FontAwesomeIcon icon={faMobileAlt} />
+                  </Link>
                 </div>
                 <div className="icon-content">
                   <h6 className="text-uppercase m-tb0 dlab-tilte">PHONE</h6>
@@ -165,35 +178,44 @@ export default function ContactUsPage() {
                 </div>
               </li>
             </ul>
+
             <div className="m-t20">
               <ul className="social-icon dez-border social-icon-lg">
                 <li>
                   <a
                     href="https://www.facebook.com/TopGunShootingAcademy"
-                    className="fa fa-facebook bg-primary"
+                    className="fa bg-primary"
                     target="_blank"
-                  ></a>
+                  >
+                    <FontAwesomeIcon icon={faFacebookF} />
+                  </a>
                 </li>
                 <li>
                   <a
                     href="https://twitter.com/TopGunIndia"
-                    className="fa fa-twitter bg-primary"
+                    className="fa bg-primary"
                     target="_blank"
-                  ></a>
+                  >
+                    <FontAwesomeIcon icon={faTwitter} />
+                  </a>
                 </li>
                 <li>
                   <a
                     href="https://www.linkedin.com/topgun.co"
-                    className="fa fa-linkedin bg-primary"
+                    className="fa bg-primary"
                     target="_blank"
-                  ></a>
+                  >
+                    <FontAwesomeIcon icon={faLinkedinIn} />
+                  </a>
                 </li>
                 <li>
                   <a
                     href="https://www.instagram.com/topgunshootingacademy"
-                    className="fa fa-instagram bg-primary"
+                    className="fa bg-primary"
                     target="_blank"
-                  ></a>
+                  >
+                    <FontAwesomeIcon icon={faInstagram} />
+                  </a>
                 </li>
               </ul>
             </div>

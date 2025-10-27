@@ -4,10 +4,13 @@ import GallerySection from "@/components/gallery/GallerySection";
 export default function GalleryPage() {
   return (
     <>
+
+    <div className="page-content">
       <GalleryBannerSection />
       {/* <FilterSection /> */}
       <GallerySection />
       {/* Your gallery images section will go here */}
+      </div>
     </>
   );
 }
