@@ -4,7 +4,7 @@
 }
 
 .h2 {
-    font-size: 40px;
+    font-size: 40px !important;
     font-weight: 700
 }
 
@@ -3027,7 +3027,7 @@ h6 {
 }
 
 .section-head h2 {
-    font-weight: 700
+    font-weight: 700 !important;
 }
 
 .bootstrap-select div.dropdown-menu ul li a {
@@ -3040,7 +3040,7 @@ textarea.form-control {
 
 .input-group-text {
     background-color: transparent;
-    border-radius: 0
+    border-radius: 0;
 }
 
 .bootstrap-touchspin .input-group-btn-vertical {
