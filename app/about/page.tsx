@@ -2,7 +2,7 @@ import AboutBanner from "@/components/about/AboutBanner";
 import TopgunAboutSection from "@/components/about/TopgunAboutSection";
 import FounderSection from "@/components/about/FounderSection";
 import CoachingTeamSection from "@/components/about/CoachingTeamSection";
-// import TestimonialSection from "@/components/about/TestimonialSection";
+import TestimonialSection from "@/components/about/TestimonialSection";
 
 import { fetchPageData } from "@/services/fetchData.service";
 import { headers } from "next/headers";
@@ -99,7 +99,7 @@ export default async function AboutPage() {
       <TopgunAboutSection/>
       <FounderSection/>
       <CoachingTeamSection/>
-      {/* <TestimonialSection data={testimonialData} /> */}
+      <TestimonialSection />
     </div>
   );
 }

@@ -22,6 +22,13 @@ export default function TestimonialSection() {
       image:
         "https://wip.tezcommerce.com:3304/admin/module/53/1649835830705.jpg",
     },
+    {
+      text: "A very good and amazing experience.the shooting range is well equipped and a peaceful environment for shooting.The most important  a very careful, supportive coach and very hardworking personality..",
+      name: "Pratyush Aman Barnik",
+      position: "Student",
+      image:
+        "https://wip.tezcommerce.com:3304/admin/module/53/1649835830705.jpg",
+    }
   ];
 
   return (
