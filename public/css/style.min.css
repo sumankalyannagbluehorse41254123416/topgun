@@ -826,7 +826,7 @@ dl dd {
     margin-bottom: 10px;
     text-align: center;
     font-weight: 600;
-    color: #ffc300;
+    color: #ffc300 !important;
 }
 
 .m-b12 {

@@ -1,5 +1,10 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCogs, faRecycle, faGraduationCap, faTrophy } from '@fortawesome/free-solid-svg-icons';
+
 export default function ClassesRulesSection() {
   return (
     <div className="section-full content-area bg-white">
@@ -19,7 +24,7 @@ export default function ClassesRulesSection() {
                   <div className="icon-bx-wraper center">
                     <div className="icon-bx-sm radius bg-primary m-b20">
                       <a href="#" className="icon-cell">
-                        <i className="fa fa-cogs"></i>
+                        <FontAwesomeIcon icon={faCogs} />
                       </a>
                     </div>
                     <div className="icon-content">
@@ -41,7 +46,7 @@ export default function ClassesRulesSection() {
                   <div className="icon-bx-wraper center">
                     <div className="icon-bx-sm radius bg-primary m-b20">
                       <a href="#" className="icon-cell">
-                        <i className="fa fa-recycle"></i>
+                        <FontAwesomeIcon icon={faRecycle} />
                       </a>
                     </div>
                     <div className="icon-content">
@@ -63,7 +68,7 @@ export default function ClassesRulesSection() {
                   <div className="icon-bx-wraper center">
                     <div className="icon-bx-sm radius bg-primary m-b20">
                       <a href="#" className="icon-cell">
-                        <i className="fa fa-graduation-cap"></i>
+                        <FontAwesomeIcon icon={faGraduationCap} />
                       </a>
                     </div>
                     <div className="icon-content">
@@ -82,7 +87,7 @@ export default function ClassesRulesSection() {
                   <div className="icon-bx-wraper center">
                     <div className="icon-bx-sm radius bg-primary m-b20">
                       <a href="#" className="icon-cell">
-                        <i className="fa fa-trophy"></i>
+                        <FontAwesomeIcon icon={faTrophy} />
                       </a>
                     </div>
                     <div className="icon-content">
