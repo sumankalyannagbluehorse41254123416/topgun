@@ -3,15 +3,24 @@ import BranchesSection from "@/components/branches/BranchesSection";
 import { fetchPageData } from "@/services/fetchData.service";
 import { headers } from "next/headers";
 
-const stripHtml = (html: string) => (html ? html.replace(/<[^>]*>/g, "") : "");
+// ✅ Helper to strip HTML tags
+const stripHtml = (html: string): string =>
+  html ? html.replace(/<[^>]*>/g, "") : "";
+
+// ✅ Section Type Definitions
+interface SubSection {
+  title?: string;
+  shortDescription?: string;
+  description?: string;
+  image?: string;
+}
 
 interface Section {
   title?: string;
   shortDescription?: string;
   image?: string;
   bannerImage?: string;
-  subsections?: Section[];
-  [key: string]: any;
+  subsections?: SubSection[];
 }
 
 interface SiteData {
@@ -29,6 +38,7 @@ export default async function BranchesPage() {
   let siteData: SiteData = {};
 
   try {
+    // ✅ Fetch Page Data
     siteData = await fetchPageData(
       { host, ...headersObj },
       "a728ee6e-5d3c-47f9-bda2-9b22359d6300"
@@ -36,15 +46,14 @@ export default async function BranchesPage() {
   } catch (error) {
     console.error("Fetch error:", error);
   }
-  console.log(siteData);
 
   const sections =
-    siteData.pageItemdataWithSubsection ||
-    siteData.data?.pageItemdataWithSubsection ||
+    siteData.pageItemdataWithSubsection ??
+    siteData.data?.pageItemdataWithSubsection ??
     [];
 
-  // ✅ Section 12: Branches Banner Section
-  const bannerSection = sections[12] || {};
+  // ✅ Section 12: Branches Banner
+  const bannerSection: Section = sections[12] || {};
   const bannerData = {
     title: stripHtml(bannerSection.title || "Branches"),
     image:
@@ -54,17 +63,18 @@ export default async function BranchesPage() {
   };
 
   // ✅ Section 13: Branches List Section
-  // const branchesSection = sections[13] || {};
-  // const branchesData = {
-  //   title: stripHtml(branchesSection.title || "Our Branches"),
-  //   shortDescription: stripHtml(branchesSection.shortDescription || ""),
-  //   subsections: branchesSection.subsections || [],
-  // };
+  const branchesSection: Section = sections[13] || {};
+  const branchesData = {
+    title: stripHtml(branchesSection.title || "Our Branches"),
+    shortDescription: stripHtml(branchesSection.shortDescription || ""),
+    subsections: branchesSection.subsections || [],
+  };
 
+  // ✅ Render Page
   return (
     <div className="page-content">
       <BranchesBannerSection data={bannerData} />
-      {/* <BranchesSection data={branchesData} /> */}
+      <BranchesSection data={branchesData} />
     </div>
   );
 }

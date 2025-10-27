@@ -2,19 +2,30 @@
 
 import Link from "next/link";
 
-export default function GalleryBannerSection() {
+interface BannerData {
+  title?: string;
+  imageUrl?: string;
+}
+
+interface GalleryBannerSectionProps {
+  data?: BannerData;
+}
+
+export default function GalleryBannerSection({ data }: GalleryBannerSectionProps) {
+  const bannerImage = data?.imageUrl || "/images/gallery-banner.jpg";
+  const bannerTitle = data?.title || "Gallery";
+
   return (
     <>
       <div
         className="dez-bnr-inr overlay-black-middle"
         style={{
-          backgroundImage:
-            "url(/images/gallery-banner.jpg)",
+          backgroundImage: `url(${bannerImage})`,
         }}
       >
         <div className="container">
           <div className="dez-bnr-inr-entry">
-            <h1 className="text-white">Gallery</h1>
+            <h1 className="text-white">{bannerTitle}</h1>
           </div>
         </div>
       </div>
@@ -25,7 +36,7 @@ export default function GalleryBannerSection() {
             <li>
               <Link href="/">Home</Link>
             </li>
-            <li>Our Gallery</li>
+            <li>{bannerTitle}</li>
           </ul>
         </div>
       </div>

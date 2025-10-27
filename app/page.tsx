@@ -19,8 +19,9 @@ interface Section {
   image?: string;
   bannerImage?: string;
   subsections?: Section[];
-  [key: string]: any; // allows flexible extra fields safely
+  [key: string]: unknown; // safer than `any`
 }
+
 
 interface SiteData {
   pageItemdataWithSubsection?: Section[];
