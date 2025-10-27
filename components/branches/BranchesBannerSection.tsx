@@ -2,20 +2,28 @@
 
 import Link from "next/link";
 
-export default function BranchesBannerSection() {
+interface BranchesBannerProps {
+  data: {
+    title?: string;
+    image?: string;
+  };
+}
+
+export default function BranchesBannerSection({ data }: BranchesBannerProps) {
+  const { title, image } = data || {};
+
   return (
     <>
       {/* === Banner Section === */}
       <div
         className="dez-bnr-inr overlay-black-middle"
         style={{
-          backgroundImage:
-            "url(/images/branch-banner.jpg)",
+          backgroundImage: `url(${image || "/images/branch-banner.jpg"})`,
         }}
       >
         <div className="container">
           <div className="dez-bnr-inr-entry">
-            <h1 className="text-white">Branches</h1>
+            <h1 className="text-white">{title || "Branches"}</h1>
           </div>
         </div>
       </div>
@@ -27,7 +35,7 @@ export default function BranchesBannerSection() {
             <li>
               <Link href="/">Home</Link>
             </li>
-            <li>Branches</li>
+            <li>{title || "Branches"}</li>
           </ul>
         </div>
       </div>
