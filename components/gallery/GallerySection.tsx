@@ -113,6 +113,12 @@ export default function GalleryWithFilter() {
     : galleryItems;
 
   return (
+    <div className="content-area">
+
+
+ 
+
+<div className="container">
     <div>
       {/* ==== FILTER BUTTONS ==== */}
       <div className="site-filters clearfix center m-b40">
@@ -170,5 +176,9 @@ export default function GalleryWithFilter() {
         </ul>
       </div>
     </div>
+    </div>
+       </div>
+
+
   );
 }

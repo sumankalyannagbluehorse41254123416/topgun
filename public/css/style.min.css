@@ -6652,7 +6652,8 @@ a {
 .site-filters li.btn {
     box-shadow: none;
     -webkit-box-shadow: none;
-    outline: 0 !important
+    outline: 0 !important;
+    border: none !important;
 }
 
 .site-filters li input {
@@ -9411,7 +9412,7 @@ footer.footer-white.site-footer .widget_services ul li a {
 .text-white h5,
 .text-white h6,
 .text-white p {
-    color: #fff
+    color: #fff !important;
 }
 
 @media only screen and (max-width:1024px) {
@@ -9489,6 +9490,11 @@ footer.footer-white.site-footer .widget_services ul li a {
     z-index: 100000
 }
 
+.dez-box.dez-gallery-box button{
+
+ width: 100%;
+}
+
 .dez-gallery-listing {
     list-style: none
 }
@@ -9500,6 +9506,8 @@ footer.footer-white.site-footer .widget_services ul li a {
 .dez-gallery-listing li img {
     height: 230px;
 }
+
+
 
 .dez-gallery-box {
     margin-bottom: 30px
