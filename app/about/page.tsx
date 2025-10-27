@@ -2,7 +2,7 @@ import AboutBanner from "@/components/about/AboutBanner";
 import TopgunAboutSection from "@/components/about/TopgunAboutSection";
 import FounderSection from "@/components/about/FounderSection";
 import CoachingTeamSection from "@/components/about/CoachingTeamSection";
-// import TestimonialSection from "@/components/about/TestimonialSection";
+import TestimonialSection from "@/components/about/TestimonialSection";
 
 import { fetchPageData } from "@/services/fetchData.service";
 import { headers } from "next/headers";
@@ -44,6 +44,7 @@ export default async function AboutPage() {
   } catch (error) {
     console.error("Fetch error:", error);
   }
+  console.log(siteData);
 
   const sections =
     siteData.pageItemdataWithSubsection ||
@@ -62,13 +63,15 @@ export default async function AboutPage() {
   };
 
   // ✅ Section 1: Topgun About Section
-  // const topgunAboutSection = sections[1] || {};
-  // const topgunAboutData = {
-  //   title: stripHtml(topgunAboutSection.title || ""),
-  //   shortDescription: stripHtml(topgunAboutSection.shortDescription || ""),
-  //   description: stripHtml(topgunAboutSection.description || ""),
-  //   image: topgunAboutSection.image || "/images/about-default.jpg",
-  // };
+  // ✅ Section 8: Topgun About Section
+const topgunAboutSection = sections[8] || {};
+const topgunAboutData = {
+  title: stripHtml(topgunAboutSection.title || "TOPGUN SHOOTING ACADEMY"),
+  shortDescription: stripHtml(topgunAboutSection.shortDescription || ""),
+  image: topgunAboutSection.image || "/images/1649670121050.png",
+  subsections: topgunAboutSection.subsections || [],
+};
+
 
   // ✅ Section 2: Founder Section
   // const founderSection = sections[2] || {};
@@ -96,10 +99,10 @@ export default async function AboutPage() {
   return (
     <div className="page-content">
       <AboutBanner data={aboutBannerData} />
-      <TopgunAboutSection/>
+      <TopgunAboutSection data={topgunAboutData}/>
       <FounderSection/>
       <CoachingTeamSection/>
-      {/* <TestimonialSection data={testimonialData} /> */}
+      <TestimonialSection />
     </div>
   );
 }
