@@ -2,6 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFacebookF,
+  faTwitter,
+  faLinkedinIn,
+  faInstagram,
+} from '@fortawesome/free-brands-svg-icons';
 
 export default function CoachingTeamSection() {
   return (
@@ -22,7 +29,7 @@ export default function CoachingTeamSection() {
         <div className="section-content">
           <div className="members_flex">
             {/* Member 1 */}
-            <div className="">
+            <div className="box-border">
               <div className="dez-box">
                 <div className="dez-media">
                   <Link href="">
@@ -35,12 +42,53 @@ export default function CoachingTeamSection() {
                     />
                   </Link>
                 </div>
-                <div className="dez-info p-a20 p-t40 border-1">
+                <div className="dez-info p-a20 p-t40  ">
                   <h4 className="dez-title m-tb0">
                     <Link href="">Rajesh Kumar</Link>
                   </h4>
                   <div className="bg-primary skew-content-box">
+                   <ul className="dez-social-icon">
+                      <li>
+                        <Link
                   
+                          href="https://www.facebook.com/TopGunShootingAcademy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faFacebookF} />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                     
+                          href="https://twitter.com/TopGunIndia"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faTwitter} />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                     
+                          href="https://www.linkedin.com/topgun.co"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faLinkedinIn} />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                     
+                          href="https://www.instagram.com/topgunshootingacademy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faInstagram} />
+                        </Link>
+                      </li>
+                    </ul>
                   </div>
                   <p className="m-t10 m-b0">
                     Rajesh Kumar all the very best on World Haemophilia Day.
@@ -55,7 +103,7 @@ export default function CoachingTeamSection() {
             </div>
 
             {/* Member 2 */}
-            <div className="">
+            <div className="box-border">
               <div className="dez-box">
                 <div className="dez-media">
                   <Link href="">
@@ -68,7 +116,7 @@ export default function CoachingTeamSection() {
                     />
                   </Link>
                 </div>
-                <div className="dez-info p-a20 p-t40 border-1">
+                <div className="dez-info p-a20 p-t40  ">
                   <h4 className="dez-title m-tb0">
                     <Link href="">Komal Shrivas</Link>
                   </h4>
@@ -76,31 +124,43 @@ export default function CoachingTeamSection() {
                     <ul className="dez-social-icon">
                       <li>
                         <Link
-                          className="fa fa-facebook"
+                  
                           href="https://www.facebook.com/TopGunShootingAcademy"
                           target="_blank"
-                        ></Link>
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faFacebookF} />
+                        </Link>
                       </li>
                       <li>
                         <Link
-                          className="fa fa-twitter"
+                     
                           href="https://twitter.com/TopGunIndia"
                           target="_blank"
-                        ></Link>
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faTwitter} />
+                        </Link>
                       </li>
                       <li>
                         <Link
-                          className="fa fa-linkedin"
+                     
                           href="https://www.linkedin.com/topgun.co"
                           target="_blank"
-                        ></Link>
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faLinkedinIn} />
+                        </Link>
                       </li>
                       <li>
                         <Link
-                          className="fa fa-instagram"
+                     
                           href="https://www.instagram.com/topgunshootingacademy"
                           target="_blank"
-                        ></Link>
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faInstagram} />
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -114,7 +174,7 @@ export default function CoachingTeamSection() {
             </div>
 
             {/* Member 3 */}
-            <div className="">
+            <div className="box-border">
               <div className="dez-box">
                 <div className="dez-media">
                   <Link href="">
@@ -127,7 +187,7 @@ export default function CoachingTeamSection() {
                     />
                   </Link>
                 </div>
-                <div className="dez-info p-a20 p-t40 border-1">
+                <div className="dez-info p-a20 p-t40  ">
                   <h4 className="dez-title m-tb0">
                     <Link href="">Sapna Kumari</Link>
                   </h4>
@@ -135,31 +195,43 @@ export default function CoachingTeamSection() {
                     <ul className="dez-social-icon">
                       <li>
                         <Link
-                          className="fa fa-facebook"
+                        
                           href="https://www.facebook.com/TopGunShootingAcademy"
                           target="_blank"
-                        ></Link>
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faFacebookF} />
+                        </Link>
                       </li>
                       <li>
                         <Link
-                          className="fa fa-twitter"
+                      
                           href="https://twitter.com/TopGunIndia"
                           target="_blank"
-                        ></Link>
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faTwitter} />
+                        </Link>
                       </li>
                       <li>
                         <Link
-                          className="fa fa-linkedin"
+                     
                           href="https://www.linkedin.com/topgun.co"
                           target="_blank"
-                        ></Link>
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faLinkedinIn} />
+                        </Link>
                       </li>
                       <li>
                         <Link
-                          className="fa fa-instagram"
+                      
                           href="https://www.instagram.com/topgunshootingacademy"
                           target="_blank"
-                        ></Link>
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon icon={faInstagram} />
+                        </Link>
                       </li>
                     </ul>
                   </div>
