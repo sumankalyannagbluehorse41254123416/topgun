@@ -158,7 +158,7 @@ h4 {
 }
 
 h5 {
-    font-size: 16px;
+    font-size: 16px !important;
     line-height: 22px;
     margin-bottom: 10px;
     font-weight: 600;
@@ -8506,7 +8506,7 @@ a {
     font-size: 45px
 }
 
-.icon-bx-sm i {
+.icon-bx-sm a {
     font-size: 30px
 }
 
@@ -9017,7 +9017,7 @@ footer h5,
 footer h5 a,
 footer h6,
 footer h6 a {
-    color: #fff
+    color: #fff !important;
 }
 
 footer,

@@ -1,7 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 export default function ChampionsContentSection() {
   return (
@@ -192,23 +194,40 @@ export default function ChampionsContentSection() {
 
           {/* === Right Sidebar === */}
           <div className="col-lg-3">
-            <div className="icon-bx-wraper bx-style-1 p-a30 center m-b15">
-              <div className="icon-bx-sm text-primary bg-white radius border-2 m-b20">
-                <Link href="#" className="icon-cell">
-                  <i className="fa fa-user"></i>
-                </Link>
-              </div>
-              <div className="icon-content">
-                <h5 className="dez-tilte text-uppercase">Recent Highlight</h5>
-                <p>
-                  Rising Covid cases has started impacting sports activities in
-                  the state capital once again. National athletics championships
-                  and national selection trials of shooting have been cancelled
-                  due to the rise in Covid cases
-                </p>
-              </div>
-            </div>
-          </div>
+      <div className="icon-bx-wraper bx-style-1 p-a30 center m-b15">
+        <div className="icon-bx-sm text-primary bg-white radius border-2 m-b20">
+          <Link href="#" className="icon-cell">
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
+        </div>
+        <div className="icon-content">
+          <h5 className="dez-tilte text-uppercase">Recent Highlight</h5>
+          <p>
+            Rising Covid cases has started impacting sports activities in
+            the state capital once again. National athletics championships
+            and national selection trials of shooting have been cancelled
+            due to the rise in Covid cases
+          </p>
+        </div>
+      </div>
+
+      <div className="icon-bx-wraper bx-style-1 p-a30 center m-b15">
+        <div className="icon-bx-sm text-primary bg-white radius border-2 m-b20">
+          <Link href="#" className="icon-cell">
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
+        </div>
+        <div className="icon-content">
+          <h5 className="dez-tilte text-uppercase">Recent Highlight</h5>
+          <p>
+            Rising Covid cases has started impacting sports activities in
+            the state capital once again. National athletics championships
+            and national selection trials of shooting have been cancelled
+            due to the rise in Covid cases
+          </p>
+        </div>
+      </div>
+    </div>
         </div>
       </div>
     </div>
