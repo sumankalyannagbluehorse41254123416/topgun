@@ -2,21 +2,33 @@
 
 import Link from "next/link";
 
-export default function ContactBannerSection() {
+interface BannerData {
+  title?: string;
+  imageUrl?: string;
+}
+
+interface ContactBannerSectionProps {
+  data?: BannerData;
+}
+
+export default function ContactBannerSection({ data }: ContactBannerSectionProps) {
+  const bannerImage = data?.imageUrl || "/images/contact-banner.jpg";
+  const bannerTitle = data?.title || "Contact Us";
+
   return (
     <>
       {/* === Banner Section === */}
       <div
         className="dez-bnr-inr overlay-black-middle"
         style={{
-          backgroundImage: "url(/images/contact-banner.jpg)",
+          backgroundImage: `url(${bannerImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="container">
           <div className="dez-bnr-inr-entry">
-            <h1 className="text-white">Contact Us</h1>
+            <h1 className="text-white">{bannerTitle}</h1>
           </div>
         </div>
       </div>
@@ -28,7 +40,7 @@ export default function ContactBannerSection() {
             <li>
               <Link href="/">Home</Link>
             </li>
-            <li>Contact Us</li>
+            <li>{bannerTitle}</li>
           </ul>
         </div>
       </div>

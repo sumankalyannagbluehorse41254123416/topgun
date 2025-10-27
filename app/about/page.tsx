@@ -8,17 +8,26 @@ import { fetchPageData } from "@/services/fetchData.service";
 import { headers } from "next/headers";
 
 // ✅ Helper: safely strip HTML tags
-const stripHtml = (html: string) => (html ? html.replace(/<[^>]*>/g, "") : "");
+const stripHtml = (html: string): string =>
+  html ? html.replace(/<[^>]*>/g, "") : "";
 
 // ✅ Define CMS data interfaces
+interface SubSection {
+  title?: string;
+  shortDescription?: string;
+  description?: string;
+  image?: string;
+  bannerImage?: string;
+  subsections?: SubSection[];
+}
+
 interface Section {
   title?: string;
   shortDescription?: string;
   description?: string;
   image?: string;
   bannerImage?: string;
-  subsections?: Section[];
-  [key: string]: any;
+  subsections?: SubSection[];
 }
 
 interface SiteData {
@@ -44,15 +53,14 @@ export default async function AboutPage() {
   } catch (error) {
     console.error("Fetch error:", error);
   }
-  console.log(siteData);
 
   const sections =
-    siteData.pageItemdataWithSubsection ||
-    siteData.data?.pageItemdataWithSubsection ||
+    siteData.pageItemdataWithSubsection ??
+    siteData.data?.pageItemdataWithSubsection ??
     [];
 
   // ✅ Section 7: About Banner
-  const aboutBannerSection = sections[7] || {};
+  const aboutBannerSection: Section = sections[7] || {};
   const aboutBannerData = {
     title: stripHtml(aboutBannerSection.title || "About Us"),
     shortDescription: stripHtml(aboutBannerSection.shortDescription || ""),
@@ -63,7 +71,7 @@ export default async function AboutPage() {
   };
 
   // ✅ Section 8: Topgun About Section
-  const topgunAboutSection = sections[8] || {};
+  const topgunAboutSection: Section = sections[8] || {};
   const topgunAboutData = {
     title: stripHtml(topgunAboutSection.title || "TOPGUN SHOOTING ACADEMY"),
     shortDescription: stripHtml(topgunAboutSection.shortDescription || ""),
@@ -71,8 +79,8 @@ export default async function AboutPage() {
     subsections: topgunAboutSection.subsections || [],
   };
 
-  // ✅ Section 9: Founder Section (Your dynamic section)
-  const founderSection = sections[9] || {};
+  // ✅ Section 9: Founder Section
+  const founderSection: Section = sections[9] || {};
   const founderData = {
     title: stripHtml(founderSection.title || "About Founder"),
     shortDescription: founderSection.shortDescription || "",
@@ -80,8 +88,8 @@ export default async function AboutPage() {
     subsections: founderSection.subsections || [],
   };
 
-  // ✅ Section 10: Coaching Team Section (optional if available)
-  const coachingTeamSection = sections[10] || {};
+  // ✅ Section 10: Coaching Team Section
+  const coachingTeamSection: Section = sections[10] || {};
   const coachingTeamData = {
     title: stripHtml(coachingTeamSection.title || "Coaching Team"),
     shortDescription: coachingTeamSection.shortDescription || "",
@@ -89,7 +97,7 @@ export default async function AboutPage() {
   };
 
   // ✅ Section 11: Testimonial Section
-  const testimonialSection = sections[11] || {};
+  const testimonialSection: Section = sections[11] || {};
   const testimonialData = {
     title: testimonialSection.title,
     shortDescription: testimonialSection.shortDescription,
