@@ -44,6 +44,7 @@ export default async function AboutPage() {
   } catch (error) {
     console.error("Fetch error:", error);
   }
+  console.log(siteData);
 
   const sections =
     siteData.pageItemdataWithSubsection ||
@@ -80,11 +81,12 @@ export default async function AboutPage() {
   };
 
   // ✅ Section 10: Coaching Team Section (optional if available)
-  // const coachingTeamSection = sections[10] || {};
-  // const coachingTeamData = {
-  //   title: stripHtml(coachingTeamSection.title || "Coaching Team"),
-  //   subsections: coachingTeamSection.subsections || [],
-  // };
+ const coachingTeamSection = sections[10] || {};
+const coachingTeamData = {
+  title: stripHtml(coachingTeamSection.title || "Coaching Team"),
+  shortDescription: coachingTeamSection.shortDescription || "",
+  subsections: coachingTeamSection.subsections || [],
+};
 
   // ✅ Section 11: Testimonial Section (optional)
   // const testimonialSection = sections[11] || {};
@@ -98,7 +100,7 @@ export default async function AboutPage() {
       <AboutBanner data={aboutBannerData} />
       <TopgunAboutSection data={topgunAboutData} />
       <FounderSection section={founderData} />
-      <CoachingTeamSection/>
+      <CoachingTeamSection section={coachingTeamData}/>
       <TestimonialSection />
     </div>
   );
