@@ -7,7 +7,7 @@ import TestimonialSection from "@/components/about/TestimonialSection";
 import { fetchPageData } from "@/services/fetchData.service";
 import { headers } from "next/headers";
 
-// Helper: strip HTML tags safely
+// ✅ Helper: safely strip HTML tags
 const stripHtml = (html: string) => (html ? html.replace(/<[^>]*>/g, "") : "");
 
 // ✅ Define CMS data interfaces
@@ -36,7 +36,7 @@ export default async function AboutPage() {
   let siteData: SiteData = {};
 
   try {
-    // Replace this UUID with your About Page ID from the CMS
+    // ✅ Fetch About Page data from your CMS using its unique UUID
     siteData = await fetchPageData(
       { host, ...headersObj },
       "a728ee6e-5d3c-47f9-bda2-9b22359d6300"
@@ -44,14 +44,13 @@ export default async function AboutPage() {
   } catch (error) {
     console.error("Fetch error:", error);
   }
-  console.log(siteData);
 
   const sections =
     siteData.pageItemdataWithSubsection ||
     siteData.data?.pageItemdataWithSubsection ||
     [];
 
-  // ✅ Section 0: About Banner
+  // ✅ Section 7: About Banner
   const aboutBannerSection = sections[7] || {};
   const aboutBannerData = {
     title: stripHtml(aboutBannerSection.title || "About Us"),
@@ -62,35 +61,33 @@ export default async function AboutPage() {
       "/images/default-banner.jpg",
   };
 
-  // ✅ Section 1: Topgun About Section
   // ✅ Section 8: Topgun About Section
-const topgunAboutSection = sections[8] || {};
-const topgunAboutData = {
-  title: stripHtml(topgunAboutSection.title || "TOPGUN SHOOTING ACADEMY"),
-  shortDescription: stripHtml(topgunAboutSection.shortDescription || ""),
-  image: topgunAboutSection.image || "/images/1649670121050.png",
-  subsections: topgunAboutSection.subsections || [],
-};
+  const topgunAboutSection = sections[8] || {};
+  const topgunAboutData = {
+    title: stripHtml(topgunAboutSection.title || "TOPGUN SHOOTING ACADEMY"),
+    shortDescription: stripHtml(topgunAboutSection.shortDescription || ""),
+    image: topgunAboutSection.image || "/images/1649670121050.png",
+    subsections: topgunAboutSection.subsections || [],
+  };
 
+  // ✅ Section 9: Founder Section (Your dynamic section)
+  const founderSection = sections[9] || {};
+  const founderData = {
+    title: stripHtml(founderSection.title || "About Founder"),
+    shortDescription: founderSection.shortDescription || "",
+    image: founderSection.image || "/images/founder.jpg",
+    subsections: founderSection.subsections || [],
+  };
 
-  // ✅ Section 2: Founder Section
-  // const founderSection = sections[2] || {};
-  // const founderData = {
-  //   title: stripHtml(founderSection.title || "Founder"),
-  //   description: stripHtml(founderSection.description || ""),
-  //   image: founderSection.image || "/images/founder.jpg",
-  //   subsections: founderSection.subsections || [],
-  // };
-
-  // ✅ Section 3: Coaching Team Section
-  // const coachingTeamSection = sections[3] || {};
+  // ✅ Section 10: Coaching Team Section (optional if available)
+  // const coachingTeamSection = sections[10] || {};
   // const coachingTeamData = {
   //   title: stripHtml(coachingTeamSection.title || "Coaching Team"),
   //   subsections: coachingTeamSection.subsections || [],
   // };
 
-  // ✅ Optional: Testimonial Section (if you enable later)
-  // const testimonialSection = sections[4] || {};
+  // ✅ Section 11: Testimonial Section (optional)
+  // const testimonialSection = sections[11] || {};
   // const testimonialData = {
   //   title: stripHtml(testimonialSection.title || "Testimonials"),
   //   subsections: testimonialSection.subsections || [],
@@ -99,8 +96,8 @@ const topgunAboutData = {
   return (
     <div className="page-content">
       <AboutBanner data={aboutBannerData} />
-      <TopgunAboutSection data={topgunAboutData}/>
-      <FounderSection/>
+      <TopgunAboutSection data={topgunAboutData} />
+      <FounderSection section={founderData} />
       <CoachingTeamSection/>
       <TestimonialSection />
     </div>

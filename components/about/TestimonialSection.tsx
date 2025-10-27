@@ -49,10 +49,14 @@ export default function TestimonialSection() {
             slidesPerView={1}
             spaceBetween={30}
             loop
-            autoplay={{ delay: 4000 }}
-            pagination={{ clickable: true }}
+            autoplay={{
+              delay: 4000, // Pause duration between slides (4 seconds)
+              disableOnInteraction: false, // Ensures autoplay continues after user interaction
+            }}
+            speed={3000} // Smooth transition duration (1 second)
             breakpoints={{
               1024: { slidesPerView: 2 },
+              991: { slidesPerView: 1 },
             }}
             className="testimonial-five"
           >
