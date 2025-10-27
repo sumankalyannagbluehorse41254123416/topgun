@@ -1268,9 +1268,9 @@ footer .footer-bottom .fa-heart {
     }
 
     .header-style-6 .header-nav .nav>li>a {
-      
+
         font-size: 10.5px;
-      
+
         padding: 12px 11px;
     }
 }
@@ -3257,6 +3257,12 @@ ol.comment-list li.comment .comment-meta {
 .testimonial-6 .testimonial-text {
     padding: 25px 35px 75px 40px;
     height: 200px;
+}
+
+@media (max-width:480px) {
+    .testimonial-6 .testimonial-text {
+        height: 280px; 
+    }
 }
 
 .dez-accordion.border-bottom {
