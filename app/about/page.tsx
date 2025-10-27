@@ -81,27 +81,28 @@ export default async function AboutPage() {
   };
 
   // ✅ Section 10: Coaching Team Section (optional if available)
- const coachingTeamSection = sections[10] || {};
-const coachingTeamData = {
-  title: stripHtml(coachingTeamSection.title || "Coaching Team"),
-  shortDescription: coachingTeamSection.shortDescription || "",
-  subsections: coachingTeamSection.subsections || [],
-};
+  const coachingTeamSection = sections[10] || {};
+  const coachingTeamData = {
+    title: stripHtml(coachingTeamSection.title || "Coaching Team"),
+    shortDescription: coachingTeamSection.shortDescription || "",
+    subsections: coachingTeamSection.subsections || [],
+  };
 
-  // ✅ Section 11: Testimonial Section (optional)
-  // const testimonialSection = sections[11] || {};
-  // const testimonialData = {
-  //   title: stripHtml(testimonialSection.title || "Testimonials"),
-  //   subsections: testimonialSection.subsections || [],
-  // };
+  // ✅ Section 11: Testimonial Section
+  const testimonialSection = sections[11] || {};
+  const testimonialData = {
+    title: testimonialSection.title,
+    shortDescription: testimonialSection.shortDescription,
+    subsections: testimonialSection.subsections || [],
+  };
 
   return (
     <div className="page-content">
       <AboutBanner data={aboutBannerData} />
       <TopgunAboutSection data={topgunAboutData} />
       <FounderSection section={founderData} />
-      <CoachingTeamSection section={coachingTeamData}/>
-      <TestimonialSection />
+      <CoachingTeamSection section={coachingTeamData} />
+      <TestimonialSection data={testimonialData} />
     </div>
   );
 }
