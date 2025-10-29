@@ -1,6 +1,7 @@
 import ContactBannerSection from "@/components/contact/ContactBannerSection";
 import ContactSection from "@/components/contact/ContactSection";
 import { fetchPageData } from "@/services/fetchData.service";
+import { fetchFormFields } from "@/services/fetchFormFields";
 import { headers } from "next/headers";
 
 // Helper to safely remove HTML tags
@@ -33,10 +34,10 @@ export default async function ContactPage() {
   let siteData: SiteData = {};
 
   try {
-    // 🔹 Replace UUID with your Contact Page ID from CMS
+    // 🔹 Fetch CMS data
     siteData = await fetchPageData(
       { host, ...headersObj },
-      "a728ee6e-5d3c-47f9-bda2-9b22359d6300"
+      "a728ee6e-5d3c-47f9-bda2-9b22359d6300" // Contact page UUID
     );
   } catch (error) {
     console.error("Fetch error:", error);
@@ -47,7 +48,7 @@ export default async function ContactPage() {
     siteData.data?.pageItemdataWithSubsection ||
     [];
 
-  // ✅ Section 1: Banner Section
+  // ✅ Section 1: Banner
   const bannerSection = sections[21] || {};
   const bannerData = {
     title: stripHtml(bannerSection.title || "Contact Us"),
@@ -58,14 +59,29 @@ export default async function ContactPage() {
   };
 
   // ✅ Section 2: Contact Section
-  // const contactSection = sections[1] || null;
+  const contactSection = sections[22] || null;
+
+  // ✅ Fetch form & fields
+  let form = null;
+  let fields = null;
+
+  try {
+    const formFields = await fetchFormFields(
+      { host },
+      process.env.FROM_UID || process.env.NEXT_PUBLIC_FROM_UID
+    );
+    form = formFields.form;
+    fields = formFields.fields;
+  } catch (error) {
+    console.log("Error in fetching contact form fields:", error);
+  }
 
   return (
     <div className="page-content">
-      {/* Banner Section */}
       <ContactBannerSection data={bannerData} />
-
-      <ContactSection />
+      {contactSection && (
+        <ContactSection data={contactSection} form={form} fields={fields} />
+      )}
     </div>
   );
 }

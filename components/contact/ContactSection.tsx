@@ -1,6 +1,5 @@
 "use client";
-
-import { FormEvent } from "react";
+import { handleSubmitForm } from "@/services/handleSubmit";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,123 +13,194 @@ import {
   faLinkedinIn,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import { useState } from "react";
 
-export default function ContactUsPage() {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    form.submit(); // same native form submit behavior
+interface SubSection {
+  title?: string;
+  description?: string;
+}
+
+interface SectionData {
+  title?: string;
+  shortDescription?: string;
+  subsections?: SubSection[];
+}
+
+interface FormField {
+  name: string;
+  label?: string;
+  placeholder?: string;
+  type?: "text" | "email" | "tel" | "textarea" | "number" | "url";
+  required?: boolean;
+}
+
+interface FormData {
+  title?: string;
+  actionUrl?: string;
+  buttonText?: string;
+}
+
+interface ContactSectionProps {
+  data?: SectionData;
+  form?: FormData;
+  fields?: FormField[];
+}
+
+interface ContactFormValues {
+  name?: string;
+  email?: string;
+  phone?: string;
+  subject?: string;
+  message?: string;
+  [key: string]: string | undefined;
+}
+
+const stripHtml = (html?: string) =>
+  html ? html.replace(/<[^>]*>/g, "").trim() : "";
+
+export default function ContactSection({ data, form, fields }: ContactSectionProps) {
+  const [loading, setLoading] = useState(false);
+
+  // ✅ Gmail-specific validation
+  const validateEmail = (email: string) => {
+    // Must end with @gmail. + at least 2 characters (like .com, .in)
+    const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.[A-Za-z]{2,}$/;
+    return gmailPattern.test(email);
   };
+
+  // ✅ Strong validation function
+  const validateForm = (dataObj: ContactFormValues): boolean => {
+    // ---- Gmail Validation ----
+    if (dataObj.email) {
+      const email = dataObj.email.trim();
+      if (!validateEmail(email)) {
+        alert("❌ Please enter a valid Gmail address (e.g. example@gmail.com).");
+        return false;
+      }
+    }
+
+    // ---- Phone validation ----
+    if (dataObj.phone) {
+      const phone = dataObj.phone.trim();
+      if (!/^\d{10}$/.test(phone)) {
+        alert("❌ Phone number must be exactly 10 digits.");
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  // ✅ Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formElement = e.currentTarget;
+    const formData = new FormData(formElement);
+
+    const dataObj: ContactFormValues = {};
+    formData.forEach((value, key) => {
+      dataObj[key] = String(value);
+    });
+
+    if (!validateForm(dataObj)) return;
+
+    try {
+      setLoading(true);
+      const host = window.location.host;
+      const res = await handleSubmitForm(host, dataObj);
+      alert("✅ Form submitted successfully!");
+      formElement.reset();
+      console.log("Response:", res);
+    } catch (err) {
+      console.error("❌ Error submitting form:", err);
+      alert("Failed to submit form. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ Restrict phone field to digits only
+  const handlePhoneKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const charCode = e.which ? e.which : e.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      e.preventDefault();
+    }
+  };
+
+  if (!data) return null;
 
   return (
     <div className="section-full content-inner contact-style-1">
       <div className="container">
         <div className="row">
-          {/* === Contact Form Section === */}
+          {/* === Contact Form === */}
           <div className="col-lg-8">
             <div className="p-a30 bg-gray clearfix m-b30">
               <h2>Contact Us</h2>
-              <form
-                method="post"
-                action="https://topgunshootingacademy.com/contact-us/save"
-                onSubmit={handleSubmit}
-              >
-                <input
-                  type="hidden"
-                  name="_token"
-                  value="4dEWitKdRWVK0lbWdCCcq1Mue2pWmmwcQqVk6ahH"
-                />
-                <input type="hidden" value="Contact" name="dzToDo" />
+
+              <form onSubmit={handleSubmit}>
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="form-group">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          name="name"
-                          id="name"
-                          className="form-control"
-                          placeholder="Your Name"
-                          required
-                          pattern="^[a-zA-Z\\s]{1,100}$"
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        name="name"
+                        className="form-control"
+                        placeholder="Your Name"
+                        required
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group">
-                      <div className="input-group">
-                        <input
-                          type="email"
-                          name="email"
-                          id="email"
-                          className="form-control"
-                          required
-                          placeholder="Your Email Id"
-                          pattern="^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"
-                        />
-                      </div>
+                      <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        placeholder="Your Gmail Id"
+                        required
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          name="phone"
-                          id="phone"
-                          required
-                          className="form-control"
-                          placeholder="Phone"
-                          pattern="^[0-9+]{10,15}$"
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        name="phone"
+                        className="form-control"
+                        placeholder="Phone"
+                        required
+                        maxLength={10}
+                        minLength={10}
+                        onKeyPress={handlePhoneKeyPress}
+                      />
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="form-group">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          name="subject"
-                          id="subject"
-                          required
-                          className="form-control"
-                          placeholder="Subject"
-                          pattern="^[a-zA-Z\\s]{1,100}$"
-                        />
-                      </div>
+                      <input
+                        type="text"
+                        name="subject"
+                        className="form-control"
+                        placeholder="Subject"
+                        required
+                      />
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="form-group">
-                      <div className="input-group">
-                        <textarea
-                          name="message"
-                          rows={4}
-                          id="message"
-                          className="form-control"
-                          required
-                          placeholder="Your Message..."
-                        ></textarea>
-                      </div>
+                      <textarea
+                        name="message"
+                        rows={4}
+                        className="form-control"
+                        placeholder="Your Message..."
+                        required
+                      ></textarea>
                     </div>
                   </div>
                   <div className="col-lg-12">
-                    <div
-                      className="g-recaptcha"
-                      id="rcaptcha"
-                      data-sitekey="6Ld9lN4fAAAAAAGediZGBLs0vmmfFssRpEE-vZKl"
-                      data-callback="recaptchaCallback"
-                    ></div>
-                  </div>
-                  <div className="col-lg-12">
-                    <button
-                      type="submit"
-                      id="submitbtn"
-                      className="site-button"
-                    >
-                      <span>Submit</span>
+                    <button type="submit" className="site-button" disabled={loading}>
+                      <span>{loading ? "Submitting..." : "Submit"}</span>
                     </button>
                   </div>
                 </div>
@@ -141,50 +211,27 @@ export default function ContactUsPage() {
           {/* === Quick Contact Section === */}
           <div className="col-lg-4 d-lg-flex">
             <div className="p-a30 m-b30 border-1 contact-area align-self-stretch">
-              <h2 className="m-b10">Quick Contact</h2>
-              <p>
-                If you have any questions simply use the following contact
-                details.
-              </p>
+              <h2 className="m-b10">{stripHtml(data.title || "Quick Contact")}</h2>
+              <p>{stripHtml(data.shortDescription || "")}</p>
+
               <ul className="no-margin">
-                <li className="icon-bx-wraper left m-b30">
-                  <div className="icon-bx-xs bg-primary">
-                    <Link href="#" className="icon-cell">
-                      <FontAwesomeIcon icon={faMapMarkerAlt} />
-                    </Link>
-                  </div>
-                  <div className="icon-content">
-                    <h6 className="text-uppercase m-tb0 dlab-tilte">
-                      ADDRESS:
-                    </h6>
-                    <p>
-                      H-19A, 2nd Floor, Kalkaji Main road, New Delhi, Delhi
-                      110019
-                    </p>
-                  </div>
-                </li>
-                <li className="icon-bx-wraper left m-b30">
-                  <div className="icon-bx-xs bg-primary">
-                    <Link href="#" className="icon-cell">
-                      <FontAwesomeIcon icon={faEnvelope} />
-                    </Link>
-                  </div>
-                  <div className="icon-content">
-                    <h6 className="text-uppercase m-tb0 dlab-tilte">EMAIL:</h6>
-                    <p>shimonsharif@gmail.com</p>
-                  </div>
-                </li>
-                <li className="icon-bx-wraper left m-b30">
-                  <div className="icon-bx-xs bg-primary">
-                    <Link href="#" className="icon-cell">
-                      <FontAwesomeIcon icon={faMobileAlt} />
-                    </Link>
-                  </div>
-                  <div className="icon-content">
-                    <h6 className="text-uppercase m-tb0 dlab-tilte">PHONE</h6>
-                    <p>011 4108 8098</p>
-                  </div>
-                </li>
+                {data.subsections?.map((item, index) => (
+                  <li className="icon-bx-wraper left m-b30" key={index}>
+                    <div className="icon-bx-xs bg-primary">
+                      <Link href="#" className="icon-cell">
+                        {index === 0 && <FontAwesomeIcon icon={faMapMarkerAlt} />}
+                        {index === 1 && <FontAwesomeIcon icon={faEnvelope} />}
+                        {index === 2 && <FontAwesomeIcon icon={faMobileAlt} />}
+                      </Link>
+                    </div>
+                    <div className="icon-content">
+                      <h6 className="text-uppercase m-tb0 dlab-tilte">
+                        {stripHtml(item.title)}
+                      </h6>
+                      <p>{stripHtml(item.description)}</p>
+                    </div>
+                  </li>
+                ))}
               </ul>
 
               <div className="m-t20">
@@ -194,6 +241,7 @@ export default function ContactUsPage() {
                       href="https://www.facebook.com/TopGunShootingAcademy"
                       className="fa bg-primary"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <FontAwesomeIcon icon={faFacebookF} />
                     </a>
@@ -203,6 +251,7 @@ export default function ContactUsPage() {
                       href="https://twitter.com/TopGunIndia"
                       className="fa bg-primary"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <FontAwesomeIcon icon={faTwitter} />
                     </a>
@@ -212,6 +261,7 @@ export default function ContactUsPage() {
                       href="https://www.linkedin.com/topgun.co"
                       className="fa bg-primary"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <FontAwesomeIcon icon={faLinkedinIn} />
                     </a>
@@ -221,6 +271,7 @@ export default function ContactUsPage() {
                       href="https://www.instagram.com/topgunshootingacademy"
                       className="fa bg-primary"
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <FontAwesomeIcon icon={faInstagram} />
                     </a>
@@ -231,7 +282,7 @@ export default function ContactUsPage() {
           </div>
         </div>
 
-        {/* === Google Map Section === */}
+        {/* === Google Map === */}
         <div className="row">
           <div className="col-lg-12 m-b30">
             <h2>Our Location</h2>
@@ -242,7 +293,6 @@ export default function ContactUsPage() {
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>
