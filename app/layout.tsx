@@ -20,6 +20,7 @@ import "../public/css/font-awesome.css";
 import "../public/css/font-awesome.min.css";
 import "../public/css/plugins.min.css";
 import "../public/css/revolution.min.css";
+import ScrollTopButton from "@/components/ScrollTopButton";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons'; // Import solid icons
 // Add other icon packs if needed, e.g., import { far } from '@fortawesome/free-regular-svg-icons';
@@ -56,6 +57,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <ScrollTopButton />
         </BootstrapProvider>
       </body>
     </html>
