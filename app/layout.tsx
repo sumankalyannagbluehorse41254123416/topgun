@@ -24,6 +24,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons'; // Import solid icons
 // Add other icon packs if needed, e.g., import { far } from '@fortawesome/free-regular-svg-icons';
 
+
 library.add(fas); // Add icons to the library
 
 const geistSans = Geist({

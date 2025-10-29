@@ -55,7 +55,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ data }) => {
 
   return (
     <div className="container">
-      <div className="section-content text-center">
+      <div className="section-content section-content-about text-center ">
         <div className="row">
           {/* === Left Column === */}
           <div className="col-lg-6 col-md-6">
@@ -75,7 +75,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ data }) => {
           {/* === Right Column === */}
           <div className="col-lg-6 col-md-6 m-b30">
             <div className="dez-box">
-              <div className="dez-media dez-img-effect off-color">
+              <div className="dez-media dez-img-effect off-color times_india">
                 <Image
                   src={imageUrl}
                   alt={stripHtml(title)}

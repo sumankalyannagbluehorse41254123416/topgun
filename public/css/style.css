@@ -1260,6 +1260,10 @@ ul.pattern li #style {
     height: 410px;
 }
 
+.section-content .dez-media.times img {
+    height: 410px !important;
+}
+
 .imges {
     width: 100%;
     height: 400px !important;
@@ -9670,7 +9674,3 @@ section.loginsection152 {
     position: relative;
     z-index: 1;
 }
-
-
-
-
