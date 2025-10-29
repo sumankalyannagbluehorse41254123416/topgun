@@ -132,7 +132,8 @@ export default function SubscribeSection() {
                     target="_blank"
                     aria-label="Facebook"
                   >
-                    <i className="fa fa-facebook" />
+                    {/* <i className="fa fa-facebook" /> */}
+                    <i className="fa-brands fa-facebook-f"></i>
                   </Link>
                 </li>
                 <li>
@@ -142,7 +143,8 @@ export default function SubscribeSection() {
                     target="_blank"
                     aria-label="Twitter"
                   >
-                    <i className="fa fa-twitter" />
+                    {/* <i className="fa fa-twitter" /> */}
+                    <i className="fa-brands fa-twitter"></i>
                   </Link>
                 </li>
                 <li>
@@ -152,7 +154,8 @@ export default function SubscribeSection() {
                     target="_blank"
                     aria-label="LinkedIn"
                   >
-                    <i className="fa fa-linkedin" />
+                    {/* <i className="fa fa-linkedin" /> */}
+                    <i className="fa-brands fa-linkedin-in"></i>
                   </Link>
                 </li>
               </ul>

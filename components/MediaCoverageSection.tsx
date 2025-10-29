@@ -86,7 +86,7 @@ export default function MediaCoverageSection({ data }: MediaCoverageProps) {
                     </Link>
                   </div>
 
-                  <div className="dez-media-medal p-4">
+                  <div className="dez-media-medal pb-2">
                     <div className="dez-media-text mb-3">
                       <Link
                         href={item.link || "#"}
