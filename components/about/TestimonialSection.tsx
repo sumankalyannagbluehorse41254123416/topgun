@@ -6,8 +6,25 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 
-// Helper function to remove HTML tags safely
-const stripHtml = (html: string) => (html ? html.replace(/<[^>]*>/g, "") : "");
+// ✅ Helper function to remove HTML tags and decode entities like &nbsp;
+const stripHtml = (html: string) => {
+  if (!html) return "";
+  return (
+    html
+      // Remove HTML tags
+      .replace(/<[^>]*>/g, "")
+      // Replace HTML entities like &nbsp; with spaces
+      .replace(/&nbsp;/g, " ")
+      .replace(/&amp;/g, "&")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      // Collapse multiple spaces and trim
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+};
 
 interface Subsection {
   title?: string; // 👤 Name
@@ -64,7 +81,6 @@ export default function TestimonialSection({ data }: { data?: Section }) {
                     <h4 className="testimonial-name m-tb0">
                       {stripHtml(t.title || "Anonymous")}
                     </h4>
-                    {/* ✅ You said position will remain same or sometimes change */}
                     <span className="testimonial-position">Student</span>
                     <div className="testimonial-pic radius">
                       <Image
