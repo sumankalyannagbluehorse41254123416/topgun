@@ -2415,7 +2415,8 @@ p {
 .social-icon-lg.social-icon li {
     display: inline-block;
     font-size: 12px;
-    padding: 0
+    padding: 0;
+    margin-right: 5px
 }
 
 .social-icon.social-icon-lg li a {

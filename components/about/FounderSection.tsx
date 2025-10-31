@@ -19,11 +19,11 @@ export default function FounderSection({ section }: FounderSectionProps) {
   if (!section) return null;
 
   return (
-    <div className="container">
+    <div className="container pt-0 pt-lg-5">
       <div className="section-content">
         <div className="row">
           {/* Left Text Section */}
-          <div className="col-lg-6 col-md-6 col-sm-6">
+          <div className="col-lg-6 col-md-12 col-sm-12">
             {/* Dynamic Title */}
             {section.title && <h2>{section.title}</h2>}
 
@@ -50,7 +50,7 @@ export default function FounderSection({ section }: FounderSectionProps) {
           </div>
 
           {/* Right Image Section */}
-          <div className="col-lg-6 col-md-6 col-sm-6">
+          <div className="col-lg-6 col-md-12 col-sm-12">
             {section.image && (
               <div>
                 <Image

@@ -209,3 +209,8 @@ a.bg-primary:focus,
 a.bg-primary:hover {
     background-color: #e4ae00 !important;
 }
+
+.social-icon a.bg-primary:focus,
+.social-icon a.bg-primary:hover {
+    background-color: #e4ae00 !important;
+}
