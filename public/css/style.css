@@ -1240,6 +1240,10 @@ ul.pattern li #style {
     color: #00ac7a;
 }
 
+.TOPGUN_SHOOTING_ACADEMY {
+    width: 100%;
+}
+
 .btn_prev {
     padding: 5px 10px 5px 10px;
     color: #7f9aa0;
@@ -1260,7 +1264,21 @@ ul.pattern li #style {
     height: 410px;
 }
 
-.section-content .dez-media.times img {
+@media (max-width:991px) {
+    .section-content .dez-media.off-color.times_india img {
+        height: 100% !important;
+    }
+
+}
+
+@media (max-width:768px) {
+    .section-content .dez-media.off-color.times_india {
+        margin-top: 20px;
+    }
+}
+
+
+.section-content .dez-media.times_india img {
     height: 410px !important;
 }
 
