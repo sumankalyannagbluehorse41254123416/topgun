@@ -3,7 +3,7 @@ import ChampionsContentSection from "@/components/champions/ChampionsContentSect
 import { fetchPageData } from "@/services/fetchData.service";
 import { headers } from "next/headers";
 
-// Helper to safely strip HTML tags & decode entities
+// ✅ Helper to safely strip HTML tags & decode entities
 const stripHtml = (html: string): string => {
   if (!html) return "";
   const noTags = html.replace(/<[^>]*>/g, "");
@@ -68,7 +68,7 @@ export default async function OurChampionsPage() {
   // ✅ Section 1: Banner (adjust index based on your CMS)
   const bannerSection = sections[16] || {};
   const bannerData = {
-    title: bannerSection.title || "Our Champions",
+    title: stripHtml(bannerSection.title || "Our Champions"),
     imageUrl:
       bannerSection.image ||
       bannerSection.bannerImage ||
@@ -78,6 +78,21 @@ export default async function OurChampionsPage() {
   const leftContent = sections[17] || {};
   const rightContent = sections[18] || {};
 
+  // ✅ Apply stripHtml to text fields
+  const cleanLeftContent = {
+    ...leftContent,
+    title: stripHtml(leftContent.title || ""),
+    shortDescription: stripHtml(leftContent.shortDescription || ""),
+    description: stripHtml(leftContent.description || ""),
+  };
+
+  const cleanRightContent = {
+    ...rightContent,
+    title: stripHtml(rightContent.title || ""),
+    shortDescription: stripHtml(rightContent.shortDescription || ""),
+    description: stripHtml(rightContent.description || ""),
+  };
+
   return (
     <div className="page-content">
       {/* === Banner Section === */}
@@ -85,8 +100,8 @@ export default async function OurChampionsPage() {
 
       {/* === Champions Content Section === */}
       <ChampionsContentSection
-        leftData={leftContent}
-        rightData={rightContent}
+        leftData={cleanLeftContent}
+        rightData={cleanRightContent}
       />
     </div>
   );

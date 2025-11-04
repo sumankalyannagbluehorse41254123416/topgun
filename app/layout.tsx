@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-import BootstrapProvider from "@/components/BootstrapProvider";   
+   
+// import BootstrapProvider from "@/components/BootstrapProvider";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "@/components/shared/footer";
 import Header from "@/components/shared/header";
@@ -54,12 +54,12 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <BootstrapProvider>
+        {/* <BootstrapProvider> */}
           <Header />
           {children}
           <Footer />
           <ScrollTopButton />
-        </BootstrapProvider>
+        {/* </BootstrapProvider> */}
       </body>
     </html>
   );
