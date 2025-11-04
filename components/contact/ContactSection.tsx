@@ -1,4 +1,5 @@
 "use client";
+
 import { handleSubmitForm } from "@/services/handleSubmit";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 
+// ✅ Type definitions
 interface SubSection {
   title?: string;
   description?: string;
@@ -40,6 +42,7 @@ interface FormData {
   buttonText?: string;
 }
 
+// ✅ Include form + fields props
 interface ContactSectionProps {
   data?: SectionData;
   form?: FormData;
@@ -58,19 +61,18 @@ interface ContactFormValues {
 const stripHtml = (html?: string) =>
   html ? html.replace(/<[^>]*>/g, "").trim() : "";
 
+// ✅ Component
 export default function ContactSection({ data, form, fields }: ContactSectionProps) {
   const [loading, setLoading] = useState(false);
 
   // ✅ Gmail-specific validation
   const validateEmail = (email: string) => {
-    // Must end with @gmail. + at least 2 characters (like .com, .in)
     const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.[A-Za-z]{2,}$/;
     return gmailPattern.test(email);
   };
 
-  // ✅ Strong validation function
+  // ✅ Strong validation
   const validateForm = (dataObj: ContactFormValues): boolean => {
-    // ---- Gmail Validation ----
     if (dataObj.email) {
       const email = dataObj.email.trim();
       if (!validateEmail(email)) {
@@ -79,7 +81,6 @@ export default function ContactSection({ data, form, fields }: ContactSectionPro
       }
     }
 
-    // ---- Phone validation ----
     if (dataObj.phone) {
       const phone = dataObj.phone.trim();
       if (!/^\d{10}$/.test(phone)) {
@@ -91,7 +92,7 @@ export default function ContactSection({ data, form, fields }: ContactSectionPro
     return true;
   };
 
-  // ✅ Handle form submission
+  // ✅ Handle submit
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formElement = e.currentTarget;
@@ -119,7 +120,7 @@ export default function ContactSection({ data, form, fields }: ContactSectionPro
     }
   };
 
-  // ✅ Restrict phone field to digits only
+  // ✅ Restrict phone input
   const handlePhoneKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const charCode = e.which ? e.which : e.keyCode;
     if (charCode < 48 || charCode > 57) {
@@ -136,7 +137,7 @@ export default function ContactSection({ data, form, fields }: ContactSectionPro
           {/* === Contact Form === */}
           <div className="col-lg-8">
             <div className="p-a30 bg-gray clearfix m-b30">
-              <h2>Contact Us</h2>
+              <h2>{form?.title || "Contact Us"}</h2>
 
               <form onSubmit={handleSubmit}>
                 <div className="row">
@@ -200,7 +201,7 @@ export default function ContactSection({ data, form, fields }: ContactSectionPro
                   </div>
                   <div className="col-lg-12">
                     <button type="submit" className="site-button" disabled={loading}>
-                      <span>{loading ? "Submitting..." : "Submit"}</span>
+                      <span>{loading ? "Submitting..." : form?.buttonText || "Submit"}</span>
                     </button>
                   </div>
                 </div>

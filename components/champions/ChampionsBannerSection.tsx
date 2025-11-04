@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 
 interface BannerData {
@@ -11,7 +10,7 @@ interface BannerData {
 export default function ChampionsBannerSection({ data }: { data: BannerData }) {
   if (!data) return null;
 
-  // Safely clean the title and ensure no unwanted HTML or &nbsp;
+  // ✅ Helper to safely clean the title
   const stripHtml = (html: string) =>
     html
       ? html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").trim()
