@@ -19,25 +19,25 @@ export default function TopgunAboutSection({ data }: TopgunAboutSectionProps) {
   const { title, shortDescription, image, subsections = [] } = data || {};
 
   return (
-    <div className="section-full bg-white content-inner">
+    <div className="section-full bg-white content-inner pb-3 pb-lg-5">
       <div className="container">
         <div className="section-content">
           <div className="row">
             {/* === Left Image === */}
-            <div className="col-lg-6 col-md-6 col-sm-6">
+            <div className="col-lg-6 col-md-12 col-sm-12">
               <div>
                 <Image
                   src={image || "/images/1649670121050.png"}
                   alt={title || "TOPGUN SHOOTING ACADEMY"}
                   width={600}
                   height={400}
-                  className="w-full h-auto"
+                  className="w-full h-auto TOPGUN_SHOOTING_ACADEMY"
                 />
               </div>
             </div>
 
             {/* === Right Text === */}
-            <div className="col-lg-6 col-md-6 col-sm-6">
+            <div className="col-lg-6 col-md-12 col-sm-12 pt-4 pt-lg-0">
               <h2>{title || "TOPGUN SHOOTING ACADEMY"}</h2>
 
               {/* Short Description (Main paragraph) */}

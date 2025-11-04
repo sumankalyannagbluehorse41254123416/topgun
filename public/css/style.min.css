@@ -1275,6 +1275,12 @@ dl dd {
     height: 300px;
 }
 
+@media (max-width:575px){
+    .dez-box .bg-gray-gray{
+        height: auto;
+    }
+}
+
 .bg-gray-dark {
     background-color: #d3d3d3;
 }
@@ -2512,6 +2518,10 @@ blockquote:before {
 @media only screen and (max-width:767px) {
     .extra-nav {
         margin-right: 15px;
+    }
+
+    .footer-col-4 .m-tb16{
+        text-align: left;
     }
 }
 

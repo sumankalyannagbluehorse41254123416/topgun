@@ -26,7 +26,7 @@ export default function CoachingTeamSection({ section }: { section: Section }) {
   if (!section) return null;
 
   return (
-    <div className="section-full bg-white content-inner">
+    <div className="section-full bg-white content-inner pb-5">
       <div className="container">
         {/* ✅ Section Header */}
         <div className="section-head text-center">

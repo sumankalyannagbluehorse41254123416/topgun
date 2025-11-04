@@ -118,11 +118,11 @@ export default function SubscribeSection() {
         className="bg-primary p-a20 text-white m-t15"
       >
         <div className="row">
-          <div className="col-lg-4 col-md-6 col-sm-6">
+          <div className="col-lg-4 col-md-6 col-sm-12">
             <h2 className="m-tb0 font-40">{formTitle}</h2>
           </div>
 
-          <div className="col-lg-8 col-md-6 col-sm-6">
+          <div className="col-lg-8 col-md-6 col-sm-12">
             <div className="m-tb16">
               <ul className="dez-social-icon border dez-social-icon-lg">
                 <li>
