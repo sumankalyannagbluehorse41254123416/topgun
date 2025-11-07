@@ -73,6 +73,23 @@ export default function ContactSection({ data, form, fields }: ContactSectionPro
 
   // ✅ Strong validation
   const validateForm = (dataObj: ContactFormValues): boolean => {
+    // Trim all fields before validation
+    Object.keys(dataObj).forEach((key) => {
+      if (typeof dataObj[key] === "string") {
+        dataObj[key] = dataObj[key]!.trim();
+      }
+    });
+
+    // Check empty text fields (non-whitespace)
+    const requiredFields = ["name", "subject", "message"];
+    for (const field of requiredFields) {
+      if (!dataObj[field] || dataObj[field]!.length === 0) {
+        alert(`❌ Please enter a valid ${field}. It cannot be empty or just spaces.`);
+        return false;
+      }
+    }
+
+    // ✅ Gmail validation
     if (dataObj.email) {
       const email = dataObj.email.trim();
       if (!validateEmail(email)) {
@@ -81,6 +98,7 @@ export default function ContactSection({ data, form, fields }: ContactSectionPro
       }
     }
 
+    // ✅ Phone number validation
     if (dataObj.phone) {
       const phone = dataObj.phone.trim();
       if (!/^\d{10}$/.test(phone)) {
@@ -137,7 +155,7 @@ export default function ContactSection({ data, form, fields }: ContactSectionPro
           {/* === Contact Form === */}
           <div className="col-lg-8">
             <div className="p-a30 bg-gray clearfix m-b30">
-              <h2>{form?.title || "Contact Us"}</h2>
+              <h2>Contact Us</h2>
 
               <form onSubmit={handleSubmit}>
                 <div className="row">
