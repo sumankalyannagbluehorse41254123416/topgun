@@ -25,7 +25,7 @@ export default function GalleryBannerSection({ data }: GalleryBannerSectionProps
       >
         <div className="container">
           <div className="dez-bnr-inr-entry">
-            <h1 className="text-white">{bannerTitle}</h1>
+            <h1 className="text-white">Gallery</h1>
           </div>
         </div>
       </div>
