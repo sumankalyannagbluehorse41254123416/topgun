@@ -3390,6 +3390,9 @@ footer.site-footer.footer-overlay form {
 }
 
 @media screen and (max-width:575px) {
+    .section-full.bg-white.content-inner.home_top {
+        padding-bottom: 0;
+    }
 
     #rc-imageselect,
     .g-recaptcha {
@@ -3736,7 +3739,7 @@ footer.site-footer.footer-overlay form {
     }
 
     .content-inner {
-        padding-top: 30px;
+        padding-top: 60px;
         padding-bottom: 0
     }
 

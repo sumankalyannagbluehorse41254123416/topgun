@@ -31,7 +31,7 @@ export default function TopgunAboutSection({ data }: TopgunAboutSectionProps) {
                   alt={title || "TOPGUN SHOOTING ACADEMY"}
                   width={600}
                   height={400}
-                  className="w-full h-auto TOPGUN_SHOOTING_ACADEMY"
+                  className="w-full TOPGUN_SHOOTING_ACADEMY"
                 />
               </div>
             </div>
