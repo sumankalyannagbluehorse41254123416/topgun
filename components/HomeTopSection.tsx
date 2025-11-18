@@ -10,7 +10,7 @@ const HomeTopSection: React.FC<HomeTopSectionProps> = ({ data }) => {
   const { title, shortDescription, imageUrl } = data || {};
 
   return (
-    <div className="section-full bg-white content-inner">
+    <div className="section-full bg-white content-inner home_top">
       <div className="section-head text-center section-aboutus home_new_css">
         <div
           className="dez-bnr-inr overlay-black-middle"

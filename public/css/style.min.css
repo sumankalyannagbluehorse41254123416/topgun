@@ -1274,6 +1274,17 @@ dl dd {
     background-color: #f5f6f6;
     height: 300px;
 }
+@media (max-width:1199px){
+    .dez-info.bg-gray-gray{
+        height: 375px;
+    }
+}
+
+@media (max-width:767px){
+    .dez-info.bg-gray-gray{
+        height: auto;
+    }
+}
 
 @media (max-width:575px){
     .dez-box .bg-gray-gray{
@@ -6740,7 +6751,8 @@ a {
     height: 3px;
     width: 80px;
     margin-bottom: 10px;
-    position: relative
+    position: relative;
+    z-index: 1;
 }
 
 .dez-separator.style-liner {
